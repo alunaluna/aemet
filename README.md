@@ -2,4 +2,4 @@
 
 ## Installation
 
-`composer install
+`composer install`
