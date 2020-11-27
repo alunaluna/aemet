@@ -18,20 +18,36 @@
 
 <body class="container">
 	<div class="relative flex justify-center">
-		<div class="row">
-			@foreach($graffitis as $g)
+		<div class="row">			
 			<div class="col-4 p-2">
 				<div class="card">
-					<img src="{{ $g['url_foto'] }}" class="card-img-top p-3" >
+					<img src="{{ $graffiti['url_foto'] }}" class="card-img-top p-3" >
 					<div class="card-body">
-						<a href ="comsa/{{ $g['id'] }}"><h5 class="card-title">{{ $g['titulo']}}</a></h5>
-						<h6 class="card-subtitle mb-2 text-muted">{{$g['autor']}}</h6>
-						<p class="card-text">{{ $g['descripcion']}}</p>
+						<h5 class="card-title">{{ $graffiti['titulo']}}</h5>
+						<h6 class="card-subtitle mb-2 text-muted">{{$graffiti['autor']}}</h6>
+						<p class="card-text">{{ $graffiti['descripcion']}}</p>
 					</div>
 				</div>
 			</div>
-			@endforeach
-		</div>
+			
+        </div>
+        <div class="row">
+            <h2>Comentarios</h2>
+        </div>
+        @foreach($comentarios as $c)
+        <div class="row">                			
+			<div class="col-4 p-2">
+				<div class="card">					
+					<div class="card-body">
+						<h5 class="card-title">{{ $c['usuario_id']}}</h5>
+						<h6 class="card-subtitle mb-2 text-muted">{{$c['texto']}}</h6>
+						<p class="card-text">{{ $c['texto']}}</p>
+					</div>
+				</div>
+            </div>
+            		
+        </div>
+        @endforeach	    
 	</div>
 </body>
 
