@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [GraffitiController::class,'index']);
+Route::get('/comsa/{id}', [GraffitiController::class,'show']);
