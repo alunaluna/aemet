@@ -89,3 +89,51 @@
 hr {
     border: 2px solid white;
 }
+
+/*--------------------------------------------------------------
+# Eventos feed
+--------------------------------------------------------------*/
+
+.evento{
+    background: #D8F3DC;
+}
+
+.titulo-evento{
+    color: #081C15;
+    margin-left: 5px;
+}
+
+.descripcion-evento{
+    color: #000;
+    margin-left: 5px;
+    margin-right: 5px;
+    text-align: justify;
+}
+
+
+/*--------------------------------------------------------------
+# Flechitas owl
+--------------------------------------------------------------*/
+
+
+.owl-prev {
+    width: 15px;
+    height: 100px;
+    position: absolute;
+    top: 40%;
+    margin-left: -20px;
+    display: block !important;
+    border:0px solid white;
+}
+
+
+.owl-next {
+    width: 15px;
+    height: 100px;
+    position: absolute;
+    top: 40%;
+    right: -25px;
+    display: block !important;
+    border:0px solid white;
+}
+.owl-prev i, .owl-next i {transform : scale(1,6); color: #ccc;}
