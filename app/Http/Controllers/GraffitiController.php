@@ -10,29 +10,29 @@ class GraffitiController extends Controller
     public function index(){
 
 		$client = new Client([
-			'base_uri' => 'localhost:8069/',
+			'base_uri' => '',
 		]);
 
-		$response = $client->request('GET','api/graffitis');
+		$response = $client->request('GET','http://graffitiserver.herokuapp.com/public/api/graffitis');
 
 		$graffitis = json_decode($response->getBody(), true);
 
 		return response()->view('feed', ['graffitis' => $graffitis]);
-		
+
 	}
 
 	public function show($id){
 		$client = new Client([
-			'base_uri' => 'localhost:8069/',
+			'base_uri' => '',
 		]);
 
-		$lin = sprintf('api/graffitis/%s/comentarios',$id);
+		$lin = sprintf('http://graffitiserver.herokuapp.com/public/api/graffitis/%s/comentarios',$id);
 
 		$response = $client->request('GET',$lin);
 
 		$comentarios = json_decode($response->getBody(), true);
 
-		$lin = sprintf('api/graffitis/%s',$id);
+		$lin = sprintf('http://graffitiserver.herokuapp.com/public/api/graffitis/%s',$id);
 
 		$response = $client->request('GET',$lin);
 
@@ -40,7 +40,7 @@ class GraffitiController extends Controller
 
 		$mes = date("m", strtotime($graffiti['created_at']));
 
-		$lin = sprintf('api/datosAbiertos/eventos/mes/%s',$mes);
+		$lin = sprintf('http://graffitiserver.herokuapp.com/public/api/datosAbiertos/eventos/mes/%s',$mes);
 
 		$response = $client->request('GET',$lin); //ralentiza la carga de la página, quizas es mejor quitarlo.
 
@@ -48,12 +48,12 @@ class GraffitiController extends Controller
 
 		$usuarios = array();
 
-		$response = $client->request('GET','api/usuarios');
+		$response = $client->request('GET','http://graffitiserver.herokuapp.com/public/api/usuarios');
 
 		$users = json_decode($response->getBody(), true);
 
 		foreach($users as $u){
-			$usuarios[$u['id']] = $u; 
+			$usuarios[$u['_id']] = $u;
 		}
 
 		return response()->view('coms', ['eventos' => $eventos, 'graffiti' => $graffiti, 'comentarios' => $comentarios, 'usuarios' => $usuarios]);

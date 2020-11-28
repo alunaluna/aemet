@@ -1,0 +1,91 @@
+/*body{
+    background: #14213D;
+}*/
+
+/*--------------------------------------------------------------
+# Main feed
+--------------------------------------------------------------*/
+
+#main {
+    background-image: url(/images/fondoweb.png?d53c26a04f3c3b9c1eb35428c57912e3);
+    /*background: #1B4332;*/
+}
+
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+#header {
+    background: #081C15;
+    transition: all 0.5s;
+    z-index: 997;
+    padding: 20px 0;
+}
+
+
+#header .logo a {
+    color: #fff;
+}
+
+
+/*--------------------------------------------------------------
+# Botón chuli
+--------------------------------------------------------------*/
+
+
+.btn-guay {
+    margin-left: 25px;
+    background: #40916C;
+    color: #fff;
+    border-radius: 4px;
+    padding: 8px 25px;
+    white-space: nowrap;
+    transition: 0.3s;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.btn-guay:hover {
+    background: #D8F3DC;
+    color: #fff;
+}
+
+/*--------------------------------------------------------------
+# Post_feed
+--------------------------------------------------------------*/
+
+.post_feed {
+    background: #fff;
+    color: #000;
+}
+
+.post_feed a{
+    color: #081C15;
+}
+
+.post_feed a:hover{
+    color: #081C15;
+}
+
+/*--------------------------------------------------------------
+# Card flotante (animación)
+--------------------------------------------------------------*/
+
+.card-flotante{
+    box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+    transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+    cursor: pointer;
+}
+
+.card-flotante:hover{
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+/*--------------------------------------------------------------
+# hr Línea horizontal
+--------------------------------------------------------------*/
+
+hr {
+    border: 2px solid white;
+}
