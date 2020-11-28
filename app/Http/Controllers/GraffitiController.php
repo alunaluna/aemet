@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 
 class GraffitiController extends Controller
 {
@@ -17,7 +18,14 @@ class GraffitiController extends Controller
 
 		$graffitis = json_decode($response->getBody(), true);
 
-		return response()->view('feed', ['graffitis' => $graffitis]);
+        //$mes = date("m", strtotime());
+        $mes = 11;
+
+		$response = $client->request('GET','http://graffitiserver.herokuapp.com/public/api/datosAbiertos/eventos/mes/'.$mes);
+
+		$eventos = json_decode($response->getBody(), true);
+
+		return response()->view('feed', ['graffitis' => $graffitis, 'eventos' => array_slice($eventos, 0, 20)]);
 
 	}
 
