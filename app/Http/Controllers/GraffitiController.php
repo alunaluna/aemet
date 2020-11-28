@@ -38,7 +38,25 @@ class GraffitiController extends Controller
 
 		$graffiti = json_decode($response->getBody(), true);
 
-		return response()->view('coms', ['graffiti' => $graffiti, 'comentarios'=>$comentarios]);
+		$mes = date("m", strtotime($graffiti['created_at']));
+
+		$lin = sprintf('api/datosAbiertos/eventos/mes/%s',$mes);
+
+		$response = $client->request('GET',$lin); //ralentiza la carga de la página, quizas es mejor quitarlo.
+
+		$eventos = json_decode($response->getBody(), true);
+
+		$usuarios = array();
+
+		$response = $client->request('GET','api/usuarios');
+
+		$users = json_decode($response->getBody(), true);
+
+		foreach($users as $u){
+			$usuarios[$u['id']] = $u; 
+		}
+
+		return response()->view('coms', ['eventos' => $eventos, 'graffiti' => $graffiti, 'comentarios' => $comentarios, 'usuarios' => $usuarios]);
 
 	}
 }

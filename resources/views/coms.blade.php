@@ -39,7 +39,7 @@
 			<div class="col-4 p-2">
 				<div class="card">					
 					<div class="card-body">
-						<h5 class="card-title">{{ $c['usuario_id']}}</h5>
+						<h5 class="card-title">{{ $usuarios[$c['usuario_id']]['username']}}</h5>
 						<h6 class="card-subtitle mb-2 text-muted">{{$c['texto']}}</h6>
 						<p class="card-text">{{ $c['texto']}}</p>
 					</div>
@@ -47,8 +47,21 @@
             </div>
             		
         </div>
-        @endforeach	    
+        @endforeach	    	
+		<div class="row">
+			<h2>Eventos del mismo mes</h2>
+		</div>
+		@foreach($eventos as $e)
+		<div class="row">                			
+			<div class="col-4 p-2">
+				<div class="card">					
+					<div class="card-body">
+						<h5 class="card-title">{{$e['NOMBRE']}}</h5>
+					</div>
+				</div>
+			</div>					
+		</div>
+		@endforeach
 	</div>
 </body>
-
 </html>
