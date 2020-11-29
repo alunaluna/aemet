@@ -11,17 +11,30 @@
 	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
 	<!-- Styles -->
+	<link href="css/app.css?v=14354" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
 </head>
 
-<body class="container">
+<body id="main">
+	<!-- ======= Header ======= -->
+	<header id="header" class="fixed-top">
+		<div class="container d-flex align-items-center">
+			<h1 class="logo mr-auto text-light"><a href="/">Web Graffiti<span></span></a></h1>
+
+			<a href="/new" class="btn-guay scrollto">Nuevo Post</a>
+		</div>
+	</header><!-- .nav-menu -->
+
+<div class="container pt-5 mt-5">
 	<div class="relative flex justify-center">
-		<div class="row">			
+		<div class="row d-flex justify-content-center mt-100 mb-100">			
 			<div class="col-4 p-2">
 				<div class="card">
-					<img src="{{ $graffiti['url_foto'] }}" class="card-img-top p-3" >
+					<img src="{{ $graffiti['url_foto'] }}" class="card-img-top" >
 					<div class="card-body">
 						<h5 class="card-title">{{ $graffiti['titulo']}}</h5>
 						<h6 class="card-subtitle mb-2 text-muted">{{$graffiti['autor']}}</h6>
@@ -53,11 +66,11 @@
 			</div>
 		</div>
 
-		<div class="row">
+		<div class="row d-flex justify-content-center mt-100 mb-100">
 			<h2>Eventos del mismo mes</h2>
 		</div>
 		@foreach($eventos as $e)
-		<div class="row">                			
+		<div class="row d-flex justify-content-center mt-100 mb-100">                			
 			<div class="col-4 p-2">
 				<div class="card">					
 					<div class="card-body">
@@ -68,5 +81,6 @@
 		</div>
 		@endforeach
 	</div>
+</div>
 </body>
 </html>
