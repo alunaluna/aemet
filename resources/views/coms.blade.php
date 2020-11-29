@@ -30,24 +30,29 @@
 				</div>
 			</div>
 			
-        </div>
-        <div class="row">
-            <h2>Comentarios</h2>
-        </div>
-        @foreach($comentarios as $c)
-        <div class="row">                			
-			<div class="col-4 p-2">
-				<div class="card">					
-					<div class="card-body">
-						<h5 class="card-title">{{ $usuarios[$c['usuario_id']]['username']}}</h5>
-						<h6 class="card-subtitle mb-2 text-muted">{{$c['texto']}}</h6>
-						<p class="card-text">{{ $c['texto']}}</p>
+		</div>
+		
+		<div class="row d-flex justify-content-center mt-100 mb-100">
+			<div class="col-lg-6">
+				<div class="card">
+					<div class="card-body text-center">
+						<h4 class="card-title">Comentarios</h4>
+					</div>
+					<div class="comment-widgets">
+					@foreach($comentarios as $c)
+						<div class="d-flex flex-row comment-row m-t-0">
+							<div class="comment-text w-100">
+								<h6 class="font-medium">{{ $usuarios[$c['usuario_id']]['username']}}</h6> <span class="m-b-15 d-block">{{$c['texto']}}</span>
+								<div class="comment-footer"><span class="text-muted float-right">{{Carbon\Carbon::parse($c['created_at'])->format('d M yy')}}</span> </div>
+							</div>
+							
+						</div>
+						@endforeach
 					</div>
 				</div>
-            </div>
-            		
-        </div>
-        @endforeach	    	
+			</div>
+		</div>
+
 		<div class="row">
 			<h2>Eventos del mismo mes</h2>
 		</div>
