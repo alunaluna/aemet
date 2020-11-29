@@ -84,7 +84,7 @@
 			@foreach($eventos as $e)
 			<div class="evento">
 				<h5 class="titulo-evento pt-2">{{$e['NOMBRE']}}</h5>
-                <div class="enlace-evento"><a href="{{$e['DIRECCION_WEB']}}">{{$e['DIRECCION_WEB']}}</a> </div>
+                <div class="enlace-evento"><a href="{{ url($e['DIRECCION_WEB'])}}" target="_blank">{{$e['DIRECCION_WEB']}}</a> </div>
 				<div class="descripcion-evento pt-2">{{substr($e['DESCRIPCION'],0,100).'...'}}</div>
 				<div class="fechas-evento pt-2 font-weight-bold" style="vertical-align: bottom">Inicio: {{substr($e['F_INICIO'],0,10)}} Fin: {{substr($e['F_FIN'],0,10)}}</div>
 			</div>

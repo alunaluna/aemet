@@ -18,15 +18,17 @@ class GraffitiController extends Controller
 
 		$graffitis = json_decode($response->getBody(), true);
 
-        //$mes = date("m", strtotime());
-        $mes = 11;
+        $mes = date("m", time());
 
 		$response = $client->request('GET','http://graffitiserver.herokuapp.com/public/api/datosAbiertos/eventos/mes/'.$mes);
-
+		
 		$eventos = json_decode($response->getBody(), true);
 
-		return response()->view('feed', ['graffitis' => $graffitis, 'eventos' => array_slice($eventos, 0, 20)]);
+		$eventosListaReducida = array_slice($eventos, 0, 20);  //Debería haber algún endpoint que devolviese un # acotado de eventos
 
+		$eventosCorregidos = GraffitiController::corregirEventos($eventosListaReducida);
+
+		return response()->view('feed', ['graffitis' => $graffitis, 'eventos' => array_slice($eventosCorregidos, 0, 20)]);
 	}
 
 	public function show($id){
@@ -52,7 +54,7 @@ class GraffitiController extends Controller
 
 		$response = $client->request('GET',$lin); //ralentiza la carga de la página, quizas es mejor quitarlo.
 
-		$eventos = json_decode($response->getBody(), true);
+		$eventos = GraffitiController::corregirEventos(array_slice(json_decode($response->getBody(), true), 0, 20));
 
 		$usuarios = array();
 
@@ -108,4 +110,33 @@ class GraffitiController extends Controller
 		return response()->view('new', $resp);
 
 	}
+
+	private static function corregirEventos($eventos){
+
+		foreach ($eventos as &$ev ) {
+			$ev['NOMBRE'] = GraffitiController::eliminarHtmlTags($ev['NOMBRE']);
+			$ev['DESCRIPCION'] = GraffitiController::eliminarHtmlTags($ev['DESCRIPCION']);
+			$ev['DIRECCION_WEB'] = 'http://'.$ev['DIRECCION_WEB'];
+
+		}
+
+		return $eventos;
+	}
+
+	
+    public static function eliminarHtmlTags($cadena){
+        
+        while(($inicioEtiquetaHtml  = strpos($cadena, '<')) !== false ){
+
+            $finalEtiquetaHtml = strpos($cadena, '>');
+            if($finalEtiquetaHtml !== false){                
+                $longitud =  $finalEtiquetaHtml - $inicioEtiquetaHtml + 1;
+                $htmlTag = substr($cadena, $inicioEtiquetaHtml, $longitud);
+                $cadena = str_replace($htmlTag, "", $cadena);
+            }
+        }
+        return $cadena;
+    }
 }
+
+
