@@ -62,7 +62,7 @@
 			<div class="row">
 				@foreach($graffitis as $g)
 				<div class="col-4 p-2">
-					<div class="card card-flotante border-0">
+					<div class="card card-flotante border-0 h-100">
 						<img src="{{ $g['url_foto'] }}" class="card-img-top">
 						<div class="card-body post_feed">
 							<h5 class="card-title"><a href="/comsa/{{ $g['_id'] }}">{{ $g['titulo']}}</a></h5>
@@ -83,9 +83,10 @@
 		<div class="owl-carousel">
 			@foreach($eventos as $e)
 			<div class="evento">
-				<h5 class="titulo-evento">{{$e['NOMBRE']}}</h5>
-				<div class="descripcion-evento">{{$e['DESCRIPCION']}}</div>
-				<div class="fechas-evento pt-2 font-weight-bold">Inicio: {{substr($e['F_INICIO'],0,10)}} Fin: {{substr($e['F_FIN'],0,10)}}</div>
+				<h5 class="titulo-evento pt-2">{{$e['NOMBRE']}}</h5>
+                <div class="enlace-evento"><a href="{{$e['DIRECCION_WEB']}}">{{$e['DIRECCION_WEB']}}</a> </div>
+				<div class="descripcion-evento pt-2">{{substr($e['DESCRIPCION'],0,100).'...'}}</div>
+				<div class="fechas-evento pt-2 font-weight-bold" style="vertical-align: bottom">Inicio: {{substr($e['F_INICIO'],0,10)}} Fin: {{substr($e['F_FIN'],0,10)}}</div>
 			</div>
 			@endforeach
 		</div>
