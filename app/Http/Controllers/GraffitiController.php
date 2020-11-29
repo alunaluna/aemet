@@ -64,7 +64,48 @@ class GraffitiController extends Controller
 			$usuarios[$u['_id']] = $u;
 		}
 
-		return response()->view('coms', ['eventos' => $eventos, 'graffiti' => $graffiti, 'comentarios' => $comentarios, 'usuarios' => $usuarios]);
+		$resp = [
+			'eventos' => $eventos,
+			'graffiti' => $graffiti,
+			'comentarios' => $comentarios,
+			'usuarios' => $usuarios,
+		];
+
+		return response()->view('coms', $resp);
+	}
+
+	public function new(){
+		$client = new Client([
+			'base_uri' => '',
+		]);
+
+		$response = $client->request('GET','http://graffitiserver.herokuapp.com/public/api/usuarios');
+
+		$users = json_decode($response->getBody(), true);
+
+		$resp = [
+			'users' => $users,
+		];
+
+		return response()->view('new', $resp);
+	}
+
+	public function store(){
+		$client = new Client([
+			'base_uri' => '',
+		]);
+
+		$response = $client->post('http://graffitiserver.herokuapp.com/public/api/graffitis', ['json' => request()->all()]);
+
+		$response = $client->request('GET','http://graffitiserver.herokuapp.com/public/api/usuarios');
+		$users = json_decode($response->getBody(), true);
+
+		$resp = [
+			'alert' => 'Graffiti creado correctamente',
+			'users' => $users,
+		];
+
+		return response()->view('new', $resp);
 
 	}
 }

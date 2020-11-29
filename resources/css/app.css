@@ -34,7 +34,7 @@
 
 .btn-guay {
     margin-left: 25px;
-    background: #40916C;
+	background: #40916C !important;
     color: #fff;
     border-radius: 4px;
     padding: 8px 25px;
@@ -42,7 +42,8 @@
     transition: 0.3s;
     font-size: 14px;
     font-weight: 600;
-    display: inline-block;
+	display: inline-block;
+	border: none;
 }
 
 .btn-guay:hover {
@@ -137,3 +138,11 @@ hr {
     border:0px solid white;
 }
 .owl-prev i, .owl-next i {transform : scale(1,6); color: #ccc;}
+
+/*--------------------------------------------------------------
+# Forms
+--------------------------------------------------------------*/
+
+.label {
+	color: #eee;
+}
