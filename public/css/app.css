@@ -170,3 +170,22 @@ hr {
 .label {
 	color: #eee;
 }
+
+/*--------------------------------------------------------------
+# Lista de comentarios
+--------------------------------------------------------------*/
+
+.list-group{
+    max-height: 300px;
+    margin-bottom: 10px;
+    overflow-y:auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/*--------------------------------------------------------------
+# Foto en grande (post-ampliado)
+--------------------------------------------------------------*/
+
+.post-ampliado{
+    background: white;
+}

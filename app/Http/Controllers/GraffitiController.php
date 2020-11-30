@@ -21,7 +21,7 @@ class GraffitiController extends Controller
         $mes = date("m", time());
 
 		$response = $client->request('GET','http://graffitiserver.herokuapp.com/public/api/datosAbiertos/eventos/mes/'.$mes);
-		
+
 		$eventos = json_decode($response->getBody(), true);
 
 		$eventosListaReducida = array_slice($eventos, 0, 20);  //Debería haber algún endpoint que devolviese un # acotado de eventos
@@ -116,20 +116,20 @@ class GraffitiController extends Controller
 		foreach ($eventos as &$ev ) {
 			$ev['NOMBRE'] = GraffitiController::eliminarHtmlTags($ev['NOMBRE']);
 			$ev['DESCRIPCION'] = GraffitiController::eliminarHtmlTags($ev['DESCRIPCION']);
-			$ev['DIRECCION_WEB'] = 'http://'.$ev['DIRECCION_WEB'];
+			$ev['DIRECCION_WEB'] = ($ev['DIRECCION_WEB']!='') ? 'http://'.$ev['DIRECCION_WEB']:'';
 
 		}
 
 		return $eventos;
 	}
 
-	
+
     public static function eliminarHtmlTags($cadena){
-        
+
         while(($inicioEtiquetaHtml  = strpos($cadena, '<')) !== false ){
 
             $finalEtiquetaHtml = strpos($cadena, '>');
-            if($finalEtiquetaHtml !== false){                
+            if($finalEtiquetaHtml !== false){
                 $longitud =  $finalEtiquetaHtml - $inicioEtiquetaHtml + 1;
                 $htmlTag = substr($cadena, $inicioEtiquetaHtml, $longitud);
                 $cadena = str_replace($htmlTag, "", $cadena);

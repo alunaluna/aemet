@@ -33,10 +33,9 @@
 	</header><!-- .nav-menu -->
 
 <div class="container pt-5 mt-5">
-	<div class="relative flex justify-center">
-		<div class="row d-flex justify-content-center mt-100 mb-100">			
-			<div class="col-4 p-2">
-				<div class="card">
+		<div class="row pt-3 mt-3 post-ampliado">
+			<div class="col-6">
+				<div class="card border-0">
 					<img src="{{ $graffiti['url_foto'] }}" class="card-img-top" >
 					<div class="card-body">
 						<h5 class="card-title">{{ $graffiti['titulo']}}</h5>
@@ -45,30 +44,43 @@
 					</div>
 				</div>
 			</div>
-			
-		</div>
-		
-		<div class="row d-flex justify-content-center mt-100 mb-100">
-			<div class="col-lg-6">
-				<div class="card">
-					<div class="card-body text-center">
+			<div class="col-6">
+                <h3 class="text">Nuevo comentario</h3>
+                <form class="form mt-2" action="/comentar" method="post">
+                    @csrf
+                    <input type="hidden" name="usuario_id" value="{{'5fc1498e3021000054006905'}}"> <!--alvilux de ejemplo-->
+                    <input type="hidden" name="graffiti_id" value="{{$graffiti['_id']}}">
+                    <textarea class="form-control" rows="3" name="texto"></textarea>
+                    <button type="submit" class="btn-guay scrollto ml-0 mt-2" >Enviar comentario</button>
+                </form>
+                <h3 class="text mt-2">Comentarios</h3>
+				<div class="list-group pb-3">
+                    @foreach($comentarios as $c)
+                        <div class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">{{ $usuarios[$c['usuario_id']]['username']}}</h5>
+                                <small>{{Carbon\Carbon::parse($c['created_at'])->format('d M yy')}}</small>
+                            </div>
+                            <p class="mb-1">{{$c['texto']}}</p>
+                            <small>Podemos poner aqui mg o algo</small>
+                        </div>
+                    @endforeach
+                    <!--<div class="card-body text-center">
 						<h4 class="card-title">Comentarios</h4>
 					</div>
 					<div class="comment-widgets">
-					@foreach($comentarios as $c)
+                        @foreach($comentarios as $c)
 						<div class="d-flex flex-row comment-row m-t-0">
 							<div class="comment-text w-100">
 								<h6 class="font-medium">{{ $usuarios[$c['usuario_id']]['username']}}</h6> <span class="m-b-15 d-block">{{$c['texto']}}</span>
 								<div class="comment-footer"><span class="text-muted float-right">{{Carbon\Carbon::parse($c['created_at'])->format('d M yy')}}</span> </div>
 							</div>
-							
+
 						</div>
-						@endforeach
+						@endforeach-->
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
 	<div class="col-12 pt-4">
 		<hr style="border: 1px solid white">
 	</div>
