@@ -20,6 +20,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 	<script src="/owlcarousel/owl.carousel.min.js"></script>
 
+	@mapstyles
 </head>
 
 <body id="main">
@@ -84,6 +85,21 @@
 	<div class="col-12 pt-4">
 		<hr style="border: 1px solid white">
 	</div>
+	<h3 class="pt-3 pb-3" style="color:white">Ubicacion del graffiti</h3>
+	<div class="container pt-1 mt-1">
+		@map([
+    'lat' => 48.134664,
+    'lng' => 11.555220,
+    'zoom' => 6,
+    'markers' => [
+        [
+            'title' => 'Go NoWare',
+            'lat' => 48.134664,
+            'lng' => 11.555220,
+        ],
+    ],
+])
+	</div>
 	<!-- CARROUSEL EVENTOS -->
 	<h3 class="pt-3 pb-3" style="color:white">Eventos de este mes en Málaga</h3>
 	<div class="owl-carousel">
@@ -97,6 +113,7 @@
 		@endforeach
 	</div>
 </div>
+@mapscripts
 </body>
 <script>
 	$(document).ready(function() {
