@@ -92,6 +92,42 @@ class GraffitiController extends Controller
 		return response()->view('new', $resp);
 	}
 
+	public function search(){
+		$client = new Client([
+			'base_uri' => '',
+		]);
+
+		$text = strval(request()->input('texto'));
+		if(empty($text)){
+			$lin = sprintf('http://graffitiserver.herokuapp.com/public/api/graffitis');
+		}else{
+			$lin = sprintf('http://graffitiserver.herokuapp.com/public/api/graffitis/porTitulo/%s',$text);
+		}
+		
+
+		$response = $client->request('GET', $lin);
+
+		$graffitis = json_decode($response->getBody(), true);
+
+		$mes = date("m", time());
+
+		$response = $client->request('GET','http://graffitiserver.herokuapp.com/public/api/datosAbiertos/eventos/mes/'.$mes);
+
+		$eventos = json_decode($response->getBody(), true);
+
+		$eventosListaReducida = array_slice($eventos, 0, 20);  //Debería haber algún endpoint que devolviese un # acotado de eventos
+
+		$eventosCorregidos = GraffitiController::corregirEventos($eventosListaReducida);
+
+		$resp = [
+			'eventos' => $eventosCorregidos,
+			'graffitis' => $graffitis,
+		];
+
+		return response()->view('feed', $resp);
+
+	}
+
 	public function store(){
 		$client = new Client([
 			'base_uri' => '',

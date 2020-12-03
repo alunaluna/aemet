@@ -36,7 +36,8 @@
 	<div class="container pt-5 mt-5">
 
 		<!-- FORMULIARIO -->
-		<form class="form pt-5">
+		<form class="form pt-5" action = "/buscar" method = "post">
+			@csrf
 			<div class="row">
 				<div class="col-4">
 					<select class="form-control">
@@ -44,10 +45,11 @@
 					</select>
 				</div>
 				<div class="col-6">
-					<input type="text" class="form-control">
+					<input type="text" class="form-control" name="texto">
 				</div>
 				<div class="col-2">
-					<a href="" class="btn-guay scrollto">Buscar</a>
+					<!--<a href="" class="btn-guay scrollto">Buscar</a>-->
+					<button type="submit" class="btn-guay">Buscar</button>
 				</div>
 			</div>
 		</form>

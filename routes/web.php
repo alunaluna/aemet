@@ -19,5 +19,6 @@ Route::get('/', [GraffitiController::class,'index']);
 Route::get('/comsa/{id}', [GraffitiController::class,'show']);
 Route::get('/new', [GraffitiController::class,'new']);
 Route::post('/new', [GraffitiController::class,'store']);
+Route::post('/buscar', [GraffitiController::class,'search']);
 
 Route::post('/comentar', [ComentarioController::class,'store']);
