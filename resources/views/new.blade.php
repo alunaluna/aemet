@@ -1,37 +1,8 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts.app')
 
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+@section('title', 'Nuevo graffiti - Web graffitis')
 
-	<title>Web Graffiti</title>
-
-	<!-- Fonts -->
-	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
-	<!-- Styles -->
-	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-	<link rel="stylesheet" href="owlcarousel/owl.carousel.min.css" />
-	<link rel="stylesheet" href="owlcarousel/owl.theme.default.min.css">
-
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-	<script src="owlcarousel/owl.carousel.min.js"></script>
-
-</head>
-
-<body id="main">
-	<!-- ======= Header ======= -->
-	<header id="header" class="fixed-top">
-		<div class="container d-flex align-items-center">
-			<h1 class="logo mr-auto text-light"><a href="{{url('/')}}">Web Graffiti<span></span></a></h1>
-		</div>
-	</header><!-- .nav-menu -->
-
-
-	<div class="container pt-5 mt-5">
+@section('content')
 
 		@if(isset($alert))
 		<!-- ALERT -->
@@ -80,20 +51,8 @@
 				</select>
 			</div>
 			<div class="form-group col-4">
-				<button type="submit" class="btn-guay mt-4">Crear graffiti</button>
+				<button type="submit" class="btn btn-guay" style="margin-top:2rem">Crear graffiti</button>
 			</div>
 		</form>
-		<!-- FIN FORMULIARIO -->
-		<div class="col-12 pt-4">
-			<hr style="border: 1px solid white">
-		</div>
 
-	</div>
-
-</body>
-
-<script>
-
-</script>
-
-</html>
+@endsection
