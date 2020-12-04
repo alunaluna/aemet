@@ -34,7 +34,7 @@
 	<div class="container pt-5 mt-5">
         <div class="row perfil mt-5">
             <div class="col-3 p-5">
-                <img src="https://image.freepik.com/vector-gratis/perfil-avatar-hombre-icono-redondo_24640-14044.jpg" class="rounded-circle pl-2">
+                <img src="{{$usuario['foto_perfil']}}" class="rounded-circle pl-2">
             </div>
             <div class="col-9 pt-5">
                 <div>
@@ -44,7 +44,7 @@
                     <div class="pr-5"><strong>{{count($graffitis)}}</strong> graffitis descubiertos </div>
                 </div>
                 <div class="pt-2">
-                    {{$usuario['nombre'].' '.$usuario['apellido']}}
+                    {{$usuario['descripcion']}}
                 </div>
 	        </div>
         </div>
