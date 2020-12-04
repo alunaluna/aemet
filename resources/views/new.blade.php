@@ -75,7 +75,7 @@
 				<label class="label">Usuario</label>
 				<select class="form-control" name="usuario_id">
 					@foreach($users as $u)
-					<option value="{{ $u['_id'] }}">{{ $u['nombre'] }}</option>
+					<option value="{{ $u['_id'] }}">{{ $u['username'] }}</option>
 					@endforeach
 				</select>
 			</div>
