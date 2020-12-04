@@ -11,7 +11,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
 	<!-- Styles -->
-	<link href="css/app.css?v=14354" rel="stylesheet">
+	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 	<link rel="stylesheet" href="owlcarousel/owl.carousel.min.css" />
 	<link rel="stylesheet" href="owlcarousel/owl.theme.default.min.css">
@@ -67,7 +67,7 @@
 					<div class="card card-flotante border-0 h-100">
 						<img src="{{ $g['url_foto'] }}" class="card-img-top">
 						<div class="card-body post_feed">
-							<h5 class="card-title"><a href="/comsa/{{ $g['_id'] }}">{{ $g['titulo']}}</a></h5>
+							<h5 class="card-title"><a href="{{url('/comsa/'.$g['_id'] ) }}">{{ $g['titulo']}}</a></h5>
 							<h6 class="card-subtitle mb-2 font-weight-bold">{{$g['autor']}}</h6>
 							<p class="card-text">{{ $g['descripcion']}}</p>
 						</div>

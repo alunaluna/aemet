@@ -11,7 +11,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
 	<!-- Styles -->
-	<link href="/css/app.css?v=14354" rel="stylesheet">
+	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 	<link rel="stylesheet" href="/owlcarousel/owl.carousel.min.css" />
 	<link rel="stylesheet" href="/owlcarousel/owl.theme.default.min.css">
@@ -39,7 +39,7 @@
 			<!-- Mitad de la foto -->
 			<div class="col-6">
 				<div class="card border-0">
-					<div class="card-header">Post de <a href="/user/{{$poster["_id"]}}">{{$poster['username']}}</a></div>
+					<div class="card-header">Post de <a href="{{url("/user/".$poster["_id"])}}">{{$poster['username']}}</a></div>
 					<img src="{{ $graffiti['url_foto'] }}" class="card-img-top">
 					<div class="card-body">
 						<h5 class="card-title">{{ $graffiti['titulo']}}</h5>
