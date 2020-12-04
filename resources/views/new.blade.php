@@ -26,7 +26,7 @@
 	<!-- ======= Header ======= -->
 	<header id="header" class="fixed-top">
 		<div class="container d-flex align-items-center">
-			<h1 class="logo mr-auto text-light"><a href="/">Web Graffiti<span></span></a></h1>
+			<h1 class="logo mr-auto text-light"><a href="{{url('/')}}">Web Graffiti<span></span></a></h1>
 		</div>
 	</header><!-- .nav-menu -->
 
@@ -45,7 +45,7 @@
 		@endif
 
 		<!-- FORMULIARIO -->
-		<form class="form-row mt-4" action="/new" method="post">
+		<form class="form-row mt-4" action="{{url('/new')}}" method="post">
 			@csrf
 			<div class="form-group col-4">
 				<label class="label">Título</label>
