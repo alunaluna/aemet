@@ -27,9 +27,9 @@
 	<!-- ======= Header ======= -->
 	<header id="header" class="fixed-top">
 		<div class="container d-flex align-items-center">
-			<h1 class="logo mr-auto text-light"><a href="/">Web Graffiti<span></span></a></h1>
+			<h1 class="logo mr-auto text-light"><a href="{{url('/')}}">Web Graffiti<span></span></a></h1>
 
-			<a href="/new" class="btn-guay scrollto">Nuevo Post</a>
+			<a href="{{url('/new')}}" class="btn-guay scrollto">Nuevo Post</a>
 		</div>
 	</header><!-- .nav-menu -->
 
@@ -52,7 +52,7 @@
 			<!-- Mitad de los comentarios -->
 			<div class="col-6">
 				<h3 class="text">Nuevo comentario</h3>
-				<form class="form mt-2" action="/comentar" method="post">
+				<form class="form mt-2" action="{{url('/comentar')}}" method="post">
 					@csrf
 					<input type="hidden" name="graffiti_id" value="{{$graffiti['_id']}}">
 					<textarea class="form-control" rows="3" name="texto"></textarea>
@@ -75,7 +75,7 @@
 					@foreach($comentarios as $c)
 					<div class="list-group-item list-group-item-action flex-column align-items-start">
 						<div class="d-flex w-100 justify-content-between">
-							<h5 class="mb-1"><a href="/user/{{$c['usuario_id']}}">{{ $usuarios[$c['usuario_id']]['username']}}</a></h5>
+							<h5 class="mb-1"><a href="{{url("/user/".$c['usuario_id'])}}">{{ $usuarios[$c['usuario_id']]['username']}}</a></h5>
 							<small>{{Carbon\Carbon::parse($c['created_at'])->format('d M yy')}}</small>
 						</div>
 						<p class="mb-1">{{$c['texto']}}</p>

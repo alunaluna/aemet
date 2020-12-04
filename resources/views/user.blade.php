@@ -23,9 +23,9 @@
 	<!-- ======= Header ======= -->
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center">
-            <h1 class="logo mr-auto text-light"><a href="/">Web Graffiti<span></span></a></h1>
+            <h1 class="logo mr-auto text-light"><a href="{{url('/')}}">Web Graffiti<span></span></a></h1>
 
-            <a href="/new" class="btn-guay scrollto">Nuevo Post</a>
+            <a href="{{url('/new')}}" class="btn-guay scrollto">Nuevo Post</a>
         </div>
     </header><!-- .nav-menu -->
 
@@ -62,7 +62,7 @@
                     <div class="card card-flotante border-0 h-100">
                         <img src="{{ $g['url_foto'] }}" class="card-img-top">
                         <div class="card-body post_feed">
-                            <h5 class="card-title"><a href="/comsa/{{ $g['_id'] }}">{{ $g['titulo']}}</a></h5>
+                            <h5 class="card-title"><a href="{{url('/comsa/'.$g['_id'] ) }}">{{ $g['titulo']}}</a></h5>
                             <h6 class="card-subtitle mb-2 font-weight-bold">{{$g['autor']}}</h6>
                             <p class="card-text">{{ $g['descripcion']}}</p>
                         </div>
