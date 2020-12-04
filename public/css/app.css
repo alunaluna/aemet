@@ -143,9 +143,9 @@ hr {
 
 .owl-prev {
     width: 15px;
-    height: 100px;
+    height: 200px;
     position: absolute;
-    top: 40%;
+    top: 10%;
     margin-left: -20px;
     display: block !important;
     border:0px solid white;
@@ -154,14 +154,35 @@ hr {
 
 .owl-next {
     width: 15px;
-    height: 100px;
+    height: 200px;
     position: absolute;
-    top: 40%;
+    top: 10%;
     right: -25px;
     display: block !important;
     border:0px solid white;
 }
-.owl-prev i, .owl-next i {transform : scale(1,6); color: #ccc;}
+
+.owl-prev span, .owl-next span{
+    color: white;
+    font-size: 50px;
+    vertical-align: center;
+}
+
+.owl-dot{
+    width : 15px;
+    height: 15px;
+}
+
+.owl-dot span{
+    background: white;
+}
+
+.owl-dot .active span{
+    background: greenyellow;
+}
+
+
+.owl-prev i, .owl-next i {transform : scale(5,20); color: #fff;}
 
 /*--------------------------------------------------------------
 # Forms
