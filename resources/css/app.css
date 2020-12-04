@@ -189,10 +189,42 @@ hr {
     -webkit-overflow-scrolling: touch;
 }
 
+.list-group a{
+    color: #52B788;
+}
+
+.list-group a:hover{
+    color: #52B788;
+}
+
 /*--------------------------------------------------------------
 # Foto en grande (post-ampliado)
 --------------------------------------------------------------*/
 
 .post-ampliado{
     background: white;
+}
+
+.card-header{
+    background: #d8f3dc;
+}
+
+.card-header a{
+    color: #52B788;
+}
+
+.card-header a:hover{
+    color: #52B788;
+}
+
+/*--------------------------------------------------------------
+# Perfil
+--------------------------------------------------------------*/
+
+.perfil{
+    background: #fff;
+}
+
+.perfil img{
+    height: 150px;
 }

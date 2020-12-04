@@ -48,6 +48,12 @@ class GraffitiController extends Controller
 
 		$graffiti = json_decode($response->getBody(), true);
 
+		$lin = sprintf('http://graffitiserver.herokuapp.com/public/api/usuarios/%s', $graffiti['usuario_id']);
+
+		$response = $client->request('GET',$lin);
+
+		$poster = json_decode($response->getBody(), true);
+
 		$mes = date("m", strtotime($graffiti['created_at']));
 
 		$lin = sprintf('http://graffitiserver.herokuapp.com/public/api/datosAbiertos/eventos/mes/%s',$mes);
@@ -71,6 +77,7 @@ class GraffitiController extends Controller
 			'graffiti' => $graffiti,
 			'comentarios' => $comentarios,
 			'usuarios' => $usuarios,
+            'poster' => $poster,
 		];
 
 		return response()->view('coms', $resp);
@@ -103,7 +110,7 @@ class GraffitiController extends Controller
 		}else{
 			$lin = sprintf('http://graffitiserver.herokuapp.com/public/api/graffitis/porTitulo/%s',$text);
 		}
-		
+
 
 		$response = $client->request('GET', $lin);
 

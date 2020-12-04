@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\GraffitiController;
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +23,5 @@ Route::post('/new', [GraffitiController::class,'store']);
 Route::post('/buscar', [GraffitiController::class,'search']);
 
 Route::post('/comentar', [ComentarioController::class,'store']);
+
+Route::get('/user/{id}', [UsuarioController::class, 'index']);
