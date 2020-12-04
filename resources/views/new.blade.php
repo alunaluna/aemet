@@ -59,13 +59,17 @@
 				<label class="label">Autor</label>
 				<input type="text" class="form-control" name="autor">
 			</div>
-			<div class="form-group col-4">
-				<label class="label">Ubicación</label>
-				<input type="text" class="form-control" name="ubicacion">
-			</div>
 			<div class="form-group col-8">
 				<label class="label">URL</label>
 				<input type="text" class="form-control" name="url_foto">
+			</div>
+			<div class="form-group col-2">
+				<label class="label">Latitud</label>
+				<input type="text" class="form-control" name="latitud">
+			</div>
+			<div class="form-group col-2">
+				<label class="label">Longitud</label>
+				<input type="text" class="form-control" name="longitud">
 			</div>
 			<div class="form-group col-4">
 				<label class="label">Usuario</label>

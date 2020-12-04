@@ -82,17 +82,17 @@
 	</div>
 
     <!-- MAPA -->
-	<h3 class="pt-3 pb-3" style="color:white">Ubicacion del graffiti</h3>
+	<h3 class="pt-3 pb-3" style="color:white">Ubicación del graffiti</h3>
 	<div class="container pt-1 mt-1">
 		@map([
-    'lat' => 48.134664,
-    'lng' => 11.555220,
+    'lat' =>  $graffiti['latitud'],
+    'lng' => $graffiti['longitud'],
     'zoom' => 6,
     'markers' => [
         [
-            'title' => 'Go NoWare',
-            'lat' => 48.134664,
-            'lng' => 11.555220,
+            'title' => $graffiti['titulo'],
+            'lat' => $graffiti['latitud'],
+            'lng' => $graffiti['longitud'],
         ],
     ],
 ])
