@@ -23536,8 +23536,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/arturofdezperez/Documents/Universidad/6-cuatrimestre-1/ing-web/prácticas/práctica 2/A4clienteREST/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/arturofdezperez/Documents/Universidad/6-cuatrimestre-1/ing-web/prácticas/práctica 2/A4clienteREST/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\Users\Alvilux\VSCodeProjects\A4clienteREST\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Alvilux\VSCodeProjects\A4clienteREST\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })
