@@ -54,6 +54,8 @@
 
 @mapscripts
 
+@yield('my_scripts')
+
 <script>
     $(document).ready(function() {
         $(".owl-carousel").owlCarousel();

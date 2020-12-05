@@ -21,7 +21,13 @@
   <component name="ChangeListManager">
     <list default="true" id="161a96a6-b1ae-461c-82eb-e9a0176adb6e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/user.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/new.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/new.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,16 +163,16 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\xampp\htdocs\A4clienteREST\resources\images" />
-      <recent name="D:\xampp\htdocs\A4clienteREST\public\owlcarousel" />
-      <recent name="D:\xampp\htdocs\A4clienteREST\public\js" />
-      <recent name="D:\xampp\htdocs\A4clienteREST\public\css" />
-      <recent name="D:\xampp\htdocs\A4clienteREST\resources\css" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\xampp\htdocs\A4clienteREST\public\css" />
       <recent name="D:\xampp\htdocs\A4clienteREST\resources\views" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\A4clienteREST\public\js" />
+      <recent name="D:\xampp\htdocs\A4clienteREST\resources\views" />
+      <recent name="D:\xampp\htdocs\A4clienteREST\resources\images" />
+      <recent name="D:\xampp\htdocs\A4clienteREST\public\owlcarousel" />
+      <recent name="D:\xampp\htdocs\A4clienteREST\public\css" />
     </key>
   </component>
   <component name="RunManager">
@@ -190,6 +196,7 @@
       <workItem from="1607072958142" duration="6988000" />
       <workItem from="1607097107843" duration="5128000" />
       <workItem from="1607103687078" duration="57000" />
+      <workItem from="1607195909358" duration="272000" />
     </task>
     <servers />
   </component>

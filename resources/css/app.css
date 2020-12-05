@@ -201,6 +201,15 @@ hr {
 	color: #eee;
 }
 
+.check-sitio{
+    border: 0px;
+    text-align: center;
+}
+
+.check-sitio:hover{
+    cursor: pointer;
+}
+
 /*--------------------------------------------------------------
 # Lista de comentarios
 --------------------------------------------------------------*/
