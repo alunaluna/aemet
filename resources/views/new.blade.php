@@ -98,5 +98,4 @@
 
 @section('my_scripts')
     <script src="{{ asset('js/new_post.js') }}"></script>
-	<script src="{{ asset('js/custom.js') }}"></script>
 @endsection

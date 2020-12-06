@@ -2,11 +2,11 @@
 let campo_foto, foto, campo_ubicacion, boton_lugar, mapa, latitud_form, longitud_form;
 
 function init(){
-    campo_foto = document.getElementById("url_foto");
+    /*campo_foto = document.getElementById("url_foto");
     campo_foto.addEventListener('change', mostrarFoto);
 
     foto = document.getElementById("imagen_mostrar");
-
+*/
     campo_ubicacion = document.getElementById("lugar");
 
     boton_lugar = document.getElementById("check_sitio");
@@ -21,11 +21,11 @@ function init(){
 }
 
 init();
-
+/*
 function mostrarFoto(){
     let url = campo_foto.value;
     foto.src = url;
-}
+}*/
 
 function actualizarMapa(){
     let ubicacion = campo_ubicacion.value;
