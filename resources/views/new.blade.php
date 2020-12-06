@@ -20,8 +20,8 @@
 			@csrf
             <div class="row">
                 <div class="form-group col-6">
-                    <label class="label">Título</label>
-                    <input type="text" class="form-control" name="titulo">
+                    <label class="label">Título *</label>
+                    <input type="text" class="form-control" name="titulo" required>
                 </div>
                 <div class="form-group col-6">
                     <label class="label">Autor</label>
@@ -31,8 +31,8 @@
 
             <div class="row">
                 <div class="form-group col-12">
-                    <label class="label">URL</label>
-                    <input type="text" class="form-control" name="url_foto" id="url_foto">
+                    <label class="label">URL *</label>
+                    <input type="text" class="form-control" name="url_foto" id="url_foto" required>
                 </div>
             </div>
 
@@ -55,7 +55,7 @@
 
                 <div class="form-group col-2">
                     <label class="label"></label>
-                    <div class="form-control btn-guay mt-2 check-sitio" id="check_sitio">Ver sitio</div>
+                    <div class="form-control btn btn-guay mt-2 check-sitio" id="check_sitio">Ver sitio</div>
                 </div>
             </div>
 

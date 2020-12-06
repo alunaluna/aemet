@@ -26,7 +26,7 @@
 				@csrf
 				<input type="hidden" name="graffiti_id" value="{{$graffiti['_id']}}">
 				<div class="form-group">
-					<textarea class="form-control" rows="3" name="texto"></textarea>
+					<textarea class="form-control" rows="3" name="texto" required></textarea>
 				</div>
 				<div class="form-group row">
 					<label class="col-form-label col-4">Enviar como usuario:</label>

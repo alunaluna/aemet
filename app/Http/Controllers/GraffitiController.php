@@ -107,11 +107,10 @@ class GraffitiController extends Controller
 		$text = strval(request()->input('texto'));
 		if(empty($text)){
 			$lin = sprintf('http://graffitiserver.herokuapp.com/public/api/graffitis');
-		}else{
+		} else {
 			$lin = sprintf('http://graffitiserver.herokuapp.com/public/api/graffitis/porTitulo/%s',$text);
 		}
-
-
+		
 		$response = $client->request('GET', $lin);
 
 		$graffitis = json_decode($response->getBody(), true);
@@ -132,15 +131,18 @@ class GraffitiController extends Controller
 		];
 
 		return response()->view('feed', $resp);
-
 	}
 
 	public function store(){
 		$client = new Client([
 			'base_uri' => '',
 		]);
+		$request_form = request()->all();
+		if(empty($request_form['autor'])){
+			$request_form['autor'] = 'Anónimo'; //si el autor está vació, lo ponemos como anónimo
+		}
 
-		$response = $client->post('http://graffitiserver.herokuapp.com/public/api/graffitis', ['json' => request()->all()]);
+		$response = $client->post('http://graffitiserver.herokuapp.com/public/api/graffitis', ['json' => $request_form]);
 
 		$response = $client->request('GET','http://graffitiserver.herokuapp.com/public/api/usuarios');
 		$users = json_decode($response->getBody(), true);
