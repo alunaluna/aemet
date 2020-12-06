@@ -78,7 +78,8 @@
 	transition: .3s all cubic-bezier(.155,1.105,.295,1.12);
 	-webkit-backface-visibility: hidden;
 	        backface-visibility: hidden; /* Para que no pete el transform */
-    /*cursor: pointer;*/
+	/*cursor: pointer;*/
+	margin-bottom: 1.25rem;
 }
 
 .card.card-flotante:hover{
@@ -208,6 +209,10 @@ hr {
     cursor: pointer;
 }
 
+input[type="file"] {
+	color: white;
+}
+
 /*--------------------------------------------------------------
 # Botón twitter
 --------------------------------------------------------------*/
@@ -220,6 +225,12 @@ hr {
     background: #55ACEE;
     color: white;
 }
+
+@media (min-width: 768px) {
+	.fa-twitter {
+		transform: translateY(-85px);
+	}
+  }
 
 /*--------------------------------------------------------------
 # Lista de comentarios

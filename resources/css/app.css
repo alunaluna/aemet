@@ -77,7 +77,8 @@
     box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
 	transition: .3s all cubic-bezier(.155,1.105,.295,1.12);
 	backface-visibility: hidden; /* Para que no pete el transform */
-    /*cursor: pointer;*/
+	/*cursor: pointer;*/
+	margin-bottom: 1.25rem;
 }
 
 .card.card-flotante:hover{
@@ -214,6 +215,10 @@ hr {
     cursor: pointer;
 }
 
+input[type="file"] {
+	color: white;
+}
+
 /*--------------------------------------------------------------
 # Botón twitter
 --------------------------------------------------------------*/
@@ -226,6 +231,12 @@ hr {
     background: #55ACEE;
     color: white;
 }
+
+@media (min-width: 768px) {
+	.fa-twitter {
+		transform: translateY(-85px);
+	}
+  }
 
 /*--------------------------------------------------------------
 # Lista de comentarios

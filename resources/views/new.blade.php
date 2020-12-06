@@ -32,19 +32,8 @@
 			<div class="row">
                 <div class="form-group col-12">
                     <label class="label">Imagen *</label>
-                    <input type="file" class="form-control" name="image" id="image" required>
+                    <input type="file" class="form-control-file" name="image" id="image" required>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group col-12">
-                    <label class="label">URL *</label>
-                    <input type="text" class="form-control" name="url_foto" id="url_foto" >
-                </div>
-            </div>
-
-            <div class="row pt-2 pb-2">
-                <img class = "img-fluid col-12" src="https://oij.org/wp-content/uploads/2016/05/placeholder.png" id="imagen_mostrar">
             </div>
 
             <div class="row">

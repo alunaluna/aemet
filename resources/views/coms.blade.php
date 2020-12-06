@@ -17,7 +17,7 @@
 					<p class="card-text">{{ $graffiti['descripcion']}}</p>
 				</div>
 				<div class="d-flex flex-row-reverse">
-					<a href="https://twitter.com/intent/tweet?text={{$tweet}}" class="fa fa-twitter mb-2 p-3 text-decoration-none rounded-circle"></a>
+					<a href="https://twitter.com/intent/tweet?text={{$tweet}}" class="btn fab fa-twitter fa-2x mb-2 p-2 text-decoration-none rounded-circle" target="_blank"></a>
 				</div>
 			</div>
 		</div>
