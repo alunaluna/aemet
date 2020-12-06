@@ -68,17 +68,20 @@ class GraffitiController extends Controller
 		$response = $client->request('GET','http://graffitiserver.herokuapp.com/public/api/usuarios');
 
 		$users = json_decode($response->getBody(), true);
-
+		
 		foreach($users as $u){
 			$usuarios[$u['_id']] = $u;
 		}
+
+		$tweet = 'Mira este graffiti de '.$graffiti['autor'].' en '.url()->current();
 
 		$resp = [
 			'eventos' => $eventos,
 			'graffiti' => $graffiti,
 			'comentarios' => $comentarios,
 			'usuarios' => $usuarios,
-            'poster' => $poster,
+			'poster' => $poster,
+			'tweet' => $tweet
 		];
 
 		return response()->view('coms', $resp);

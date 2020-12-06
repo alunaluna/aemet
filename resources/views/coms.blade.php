@@ -16,6 +16,9 @@
 					<h6 class="card-subtitle mb-2 text-muted">{{$graffiti['autor']}}</h6>
 					<p class="card-text">{{ $graffiti['descripcion']}}</p>
 				</div>
+				<div class="d-flex flex-row-reverse">
+					<a href="https://twitter.com/intent/tweet?text={{$tweet}}" class="fa fa-twitter mb-2 p-3 text-decoration-none rounded-circle"></a>
+				</div>
 			</div>
 		</div>
 
