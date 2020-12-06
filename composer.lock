@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ecb49dee64cad93b06ce5d66907f6dc8",
+    "content-hash": "efad1a2d2067d6b4281463bf86b71a6e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4920,6 +4920,61 @@
                 "source": "https://github.com/webmozart/assert/tree/master"
             },
             "time": "2020-07-08T17:02:28+00:00"
+        },
+        {
+            "name": "yish/imgur",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Mombuyish/Laravel-Imgur.git",
+                "reference": "db208257d8f2bf1c09117d31265b6e286d0f49f5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Mombuyish/Laravel-Imgur/zipball/db208257d8f2bf1c09117d31265b6e286d0f49f5",
+                "reference": "db208257d8f2bf1c09117d31265b6e286d0f49f5",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.2",
+                "php": ">=7.2"
+            },
+            "type": "library",
+            "extra": {
+                "component": "package",
+                "laravel": {
+                    "providers": [
+                        "Yish\\Imgur\\UploadServiceProvider"
+                    ],
+                    "aliases": {
+                        "Imgur": "Yish\\Imgur\\Facades\\Upload"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Yish\\Imgur\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Yish",
+                    "email": "mombuartworks@gmail.com"
+                }
+            ],
+            "description": "Imgur upload API with Laravel.",
+            "homepage": "https://github.com/Mombuyish/Laravel-Imgur",
+            "keywords": [
+                "imgur",
+                "laravel",
+                "upload"
+            ],
+            "support": {
+                "issues": "https://github.com/Mombuyish/Laravel-Imgur/issues",
+                "source": "https://github.com/Mombuyish/Laravel-Imgur/tree/2.0.0"
+            },
+            "time": "2020-10-27T03:13:06+00:00"
         }
     ],
     "packages-dev": [

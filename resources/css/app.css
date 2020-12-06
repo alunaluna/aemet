@@ -241,16 +241,16 @@ hr {
     background: white;
 }
 
-.card-header{
-    background: #d8f3dc;
-}
-
 .card-header a{
     color: #52B788;
 }
 
 .card-header a:hover{
     color: #52B788;
+}
+
+.card-img-top.post-image{
+	border-radius: 0;
 }
 
 /*--------------------------------------------------------------

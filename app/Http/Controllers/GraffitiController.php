@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
+use Imgur;
 
 class GraffitiController extends Controller
 {
@@ -153,18 +154,23 @@ class GraffitiController extends Controller
 		];
 
 		return response()->view('new', $resp);
+	}
 
+	public function subirImagenImgur($url) {
+		$image = Imgur::setHeaders([
+			'headers' => [
+				'authorization' => 'Client-ID ' . env('IMGUR_CLIENT_ID'),
+			]
+		])->upload($url);
+		return $image->link();
 	}
 
 	private static function corregirEventos($eventos){
-
 		foreach ($eventos as &$ev ) {
 			$ev['NOMBRE'] = GraffitiController::eliminarHtmlTags($ev['NOMBRE']);
 			$ev['DESCRIPCION'] = GraffitiController::eliminarHtmlTags($ev['DESCRIPCION']);
 			$ev['DIRECCION_WEB'] = ($ev['DIRECCION_WEB']!='') ? 'http://'.$ev['DIRECCION_WEB']:'';
-
 		}
-
 		return $eventos;
 	}
 

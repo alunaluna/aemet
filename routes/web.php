@@ -25,3 +25,5 @@ Route::post('/buscar', [GraffitiController::class,'search']);
 Route::post('/comentar', [ComentarioController::class,'store']);
 
 Route::get('/user/{id}', [UsuarioController::class, 'index']);
+
+Route::post('/uploadImage', [GraffitiController::class,'subirImageImgur']);

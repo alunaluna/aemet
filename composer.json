@@ -14,7 +14,8 @@
         "gonoware/laravel-maps": "^1.4",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^8.12",
-        "laravel/tinker": "^2.5"
+        "laravel/tinker": "^2.5",
+        "yish/imgur": "^2.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
