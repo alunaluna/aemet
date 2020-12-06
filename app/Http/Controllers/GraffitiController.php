@@ -146,6 +146,14 @@ class GraffitiController extends Controller
 			$request_form['autor'] = 'Anónimo'; //si el autor está vació, lo ponemos como anónimo
 		}
 
+		$image = Imgur::setHeaders([
+			'headers' => [
+				'authorization' => 'Client-ID ' . env('IMGUR_CLIENT_ID'),
+			]
+		])->upload(request()->image);
+
+		$request_form['url_foto'] = $image->link();
+
 		$response = $client->post('http://graffitiserver.herokuapp.com/public/api/graffitis', ['json' => $request_form]);
 
 		$response = $client->request('GET','http://graffitiserver.herokuapp.com/public/api/usuarios');
