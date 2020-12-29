@@ -15,7 +15,7 @@ class ComentarioController extends Controller
             'base_uri' => '',
         ]);
 
-        $response = $client->post('http://graffitiserver.herokuapp.com/public/api/comentarios', ['json' => request()->all()]);
+        $response = $client->post(env('API_URL_HEROKU') .'api/comentarios', ['json' => request()->all()]);
 
         $resp = [];
         if($response->getStatusCode()==201){

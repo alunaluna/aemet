@@ -15,13 +15,13 @@ class GraffitiController extends Controller
 			'base_uri' => '',
 		]);
 
-		$response = $client->request('GET','http://graffitiserver.herokuapp.com/public/api/graffitis');
+		$response = $client->request('GET',env('API_URL_HEROKU') .'api/graffitis');
 
 		$graffitis = json_decode($response->getBody(), true);
 
         $mes = date("m", time());
 
-		$response = $client->request('GET','http://graffitiserver.herokuapp.com/public/api/datosAbiertos/eventos/mes/'.$mes);
+		$response = $client->request('GET',env('API_URL_HEROKU') .'api/datosAbiertos/eventos/mes/'.$mes);
 
 		$eventos = json_decode($response->getBody(), true);
 
@@ -37,19 +37,19 @@ class GraffitiController extends Controller
 			'base_uri' => '',
 		]);
 
-		$lin = sprintf('http://graffitiserver.herokuapp.com/public/api/graffitis/%s/comentarios',$id);
+		$lin = sprintf(env('API_URL_HEROKU') .'api/graffitis/%s/comentarios',$id);
 
 		$response = $client->request('GET',$lin);
 
 		$comentarios = json_decode($response->getBody(), true);
 
-		$lin = sprintf('http://graffitiserver.herokuapp.com/public/api/graffitis/%s',$id);
+		$lin = sprintf(env('API_URL_HEROKU') .'api/graffitis/%s',$id);
 
 		$response = $client->request('GET',$lin);
 
 		$graffiti = json_decode($response->getBody(), true);
 
-		$lin = sprintf('http://graffitiserver.herokuapp.com/public/api/usuarios/%s', $graffiti['usuario_id']);
+		$lin = sprintf(env('API_URL_HEROKU') .'api/usuarios/%s', $graffiti['usuario_id']);
 
 		$response = $client->request('GET',$lin);
 
@@ -57,7 +57,7 @@ class GraffitiController extends Controller
 
 		$mes = date("m", strtotime($graffiti['created_at']));
 
-		$lin = sprintf('http://graffitiserver.herokuapp.com/public/api/datosAbiertos/eventos/mes/%s',$mes);
+		$lin = sprintf(env('API_URL_HEROKU') .'api/datosAbiertos/eventos/mes/%s',$mes);
 
 		$response = $client->request('GET',$lin); //ralentiza la carga de la página, quizas es mejor quitarlo.
 
@@ -65,7 +65,7 @@ class GraffitiController extends Controller
 
 		$usuarios = array();
 
-		$response = $client->request('GET','http://graffitiserver.herokuapp.com/public/api/usuarios');
+		$response = $client->request('GET',env('API_URL_HEROKU') .'api/usuarios');
 
 		$users = json_decode($response->getBody(), true);
 		
@@ -92,7 +92,7 @@ class GraffitiController extends Controller
 			'base_uri' => '',
 		]);
 
-		$response = $client->request('GET','http://graffitiserver.herokuapp.com/public/api/usuarios');
+		$response = $client->request('GET',env('API_URL_HEROKU') .'api/usuarios');
 
 		$users = json_decode($response->getBody(), true);
 
@@ -110,9 +110,9 @@ class GraffitiController extends Controller
 
 		$text = strval(request()->input('texto'));
 		if(empty($text)){
-			$lin = sprintf('http://graffitiserver.herokuapp.com/public/api/graffitis');
+			$lin = sprintf(env('API_URL_HEROKU') .'api/graffitis');
 		} else {
-			$lin = sprintf('http://graffitiserver.herokuapp.com/public/api/graffitis/porTitulo/%s',$text);
+			$lin = sprintf(env('API_URL_HEROKU') .'api/graffitis/porTitulo/%s',$text);
 		}
 		
 		$response = $client->request('GET', $lin);
@@ -121,7 +121,7 @@ class GraffitiController extends Controller
 
 		$mes = date("m", time());
 
-		$response = $client->request('GET','http://graffitiserver.herokuapp.com/public/api/datosAbiertos/eventos/mes/'.$mes);
+		$response = $client->request('GET',env('API_URL_HEROKU') .'api/datosAbiertos/eventos/mes/'.$mes);
 
 		$eventos = json_decode($response->getBody(), true);
 
@@ -154,9 +154,9 @@ class GraffitiController extends Controller
 
 		$request_form['url_foto'] = $image->link();
 
-		$response = $client->post('http://graffitiserver.herokuapp.com/public/api/graffitis', ['json' => $request_form]);
+		$response = $client->post(env('API_URL_HEROKU') .'api/graffitis', ['json' => $request_form]);
 
-		$response = $client->request('GET','http://graffitiserver.herokuapp.com/public/api/usuarios');
+		$response = $client->request('GET',env('API_URL_HEROKU') .'api/usuarios');
 		$users = json_decode($response->getBody(), true);
 
 		$resp = [

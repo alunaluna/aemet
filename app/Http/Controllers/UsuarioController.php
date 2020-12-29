@@ -13,13 +13,13 @@ class UsuarioController extends Controller
             'base_uri' => '',
         ]);
 
-        $lin = sprintf('http://graffitiserver.herokuapp.com/public/api/usuarios/%s',$id);
+        $lin = sprintf(env('API_URL_HEROKU') .'api/usuarios/%s',$id);
 
         $response = $client->request('GET',$lin); //ralentiza la carga de la página, quizas es mejor quitarlo.
 
         $usuario = json_decode($response->getBody(), true);
 
-        $lin = sprintf('http://graffitiserver.herokuapp.com/public/api/usuarios/%s/graffitis',$id);
+        $lin = sprintf(env('API_URL_HEROKU') .'api/usuarios/%s/graffitis',$id);
 
         $response = $client->request('GET',$lin); //ralentiza la carga de la página, quizas es mejor quitarlo.
 
