@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\GraffitiController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,5 +26,10 @@ Route::post('/buscar', [GraffitiController::class,'search']);
 Route::post('/comentar', [ComentarioController::class,'store']);
 
 Route::get('/user/{id}', [UsuarioController::class, 'index']);
+
+Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login/redirect', [LoginController::class, 'redirect']);
+Route::get('/login/callback', [LoginController::class, 'callback']);
+Route::post('/login', [LoginController::class, 'store']);
 
 Route::post('/uploadImage', [GraffitiController::class,'subirImageImgur']);

@@ -1,5 +1,5 @@
 
-let campo_foto, foto, campo_ubicacion, boton_lugar, mapa, latitud_form, longitud_form;
+let campo_foto, foto, campo_ubicacion, boton_lugar, mapa, latitud_form, longitud_form, marker;
 
 function init(){
     /*campo_foto = document.getElementById("url_foto");
@@ -18,6 +18,8 @@ function init(){
 
     latitud_form = document.getElementById("latitud");
     longitud_form = document.getElementById("longitud");
+
+    marker = new L.marker([0, 0])
 }
 
 init();
@@ -35,7 +37,11 @@ function actualizarMapa(){
         let latitud = json[0]['lat'];
         let longitud = json[0]['lon'];
         mapa.setView([latitud, longitud], 30);
-        L.marker([latitud, longitud]).addTo(mapa);
+
+        mapa.removeLayer(marker);
+        marker = new L.marker([latitud, longitud]);
+        mapa.addLayer(marker);
+
         latitud_form.value = latitud;
         longitud_form.value = longitud;
     });
