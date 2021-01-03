@@ -3,7 +3,7 @@
 @section('title', 'Inicia sesión en Graffitibook')
 
 @section('content')
-    <form class="form mt-4" action="{{url('/login/new')}}" method="post" enctype="multipart/form-data">
+    <form class="form mt-4" action="{{url('/login')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="form-group col-6">
@@ -24,7 +24,7 @@
         <div class="row">
             <div class="form-group col-12">
                 <label class="label">Foto de perfil *</label>
-                <input type="file" class="form-control-file" name="foto_perfil" id="image" required>
+                <input type="file" class="form-control-file" name="image" id="image" required>
             </div>
         </div>
 

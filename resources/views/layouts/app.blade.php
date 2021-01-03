@@ -51,7 +51,7 @@
     @section('footer')
 		<footer class="footer mt-5">
 			<div class="container">
-				<span>Graffiti web © 2020</span>
+				<span>Graffiti web © 2021</span>
 			</div>
 		</footer>
     @show

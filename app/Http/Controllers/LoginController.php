@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
+use Imgur;
+use function PHPUnit\Framework\isEmpty;
 
 class LoginController extends Controller
 {
@@ -13,23 +15,24 @@ class LoginController extends Controller
     }
 
     public function redirect(){
-        return response()->view('register');
-        //return Socialite::driver('google')->redirect();
+        return Socialite::driver('google')->redirect();
     }
 
     public function callback(){
-        $email = Socialite::driver('google')->user();
-        request()->session()->put(['usuario', $email]);
+        $email = Socialite::driver('google')->stateless()->user()->getEmail();
+        request()->session()->put('email', $email);
 
         $client = new Client([
             'base_uri' => '',
         ]);
 
-        $lin = sprintf(env('API_URL_HEROKU') .'api/usuarios/email/%s',$email);
+        $lin = sprintf(env('API_URL_HEROKU') .'api/usuarios/porEmail/%s',$email);
 
         $response = $client->request('GET',$lin);
 
-        if($response == null){ //si ese correo no tiene entrada en la base de datos, entonces pasamos a crear una cuenta
+        $response = json_decode($response->getBody(), true);
+
+        if(sizeof($response)==0){ //si ese correo no tiene entrada en la base de datos, entonces pasamos a crear una cuenta
             return response()->view('register');
         }else{ //si ese correo ya está registrado, entonces palante
             return redirect('/');
@@ -51,9 +54,9 @@ class LoginController extends Controller
             ]
         ])->upload(request()->image);
 
-        $request_form['url_foto'] = $image->link();
+        $request_form['foto_perfil'] = $image->link();
 
-        $response = $client->post(env('API_URL_HEROKU') .'api/graffitis', ['json' => $request_form]);
+        $response = $client->post(env('API_URL_HEROKU') .'api/usuarios', ['json' => $request_form]);
 
         $response = $client->request('GET',env('API_URL_HEROKU') .'api/usuarios');
         $users = json_decode($response->getBody(), true);
