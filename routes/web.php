@@ -4,6 +4,7 @@ use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\GraffitiController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Middleware\AuthSession;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [GraffitiController::class,'index']);
+Route::get('/', [GraffitiController::class,'index']);//->middleware(AuthSession::class);
 Route::get('/comsa/{id}', [GraffitiController::class,'show']);
 Route::get('/new', [GraffitiController::class,'new']);
 Route::post('/new', [GraffitiController::class,'store']);

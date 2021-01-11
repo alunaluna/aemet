@@ -18,7 +18,7 @@
                 </div>
                 <div class="pt-2">
                     {{$usuario['descripcion']}}
-					{{Auth::user()}}
+					{{ request()->session()->get('expiresDate') }}
                 </div>
 	        </div>
         </div>

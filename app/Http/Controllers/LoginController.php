@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Imgur;
 use function PHPUnit\Framework\isEmpty;
@@ -19,14 +21,18 @@ class LoginController extends Controller
     }
 
     public function callback(){
-        $email = Socialite::driver('google')->stateless()->user()->getEmail();
-        request()->session()->put('email', $email);
-
+		$user = Socialite::driver('google')->stateless()->user();
+//        $email = $user->getEmail();
+		//auth()->login($user, true);
+		request()->session()->put('user', $user);
+		request()->session()->put('expiresDate', Carbon::now()->addHours(1));
+		//dd($user);
+		
         $client = new Client([
             'base_uri' => '',
         ]);
 
-        $lin = sprintf(env('API_URL_HEROKU') .'api/usuarios/porEmail/%s',$email);
+        $lin = sprintf(env('API_URL_HEROKU') .'api/usuarios/porEmail/%s',$user->getEmail());
 
         $response = $client->request('GET',$lin);
 
@@ -46,7 +52,7 @@ class LoginController extends Controller
 
         $request_form = request()->all();
 
-        $request_form['email'] = request()->session()->get('email');
+        $request_form['email'] = request()->session()->get('user')->getEmail();
 
         $image = Imgur::setHeaders([
             'headers' => [
