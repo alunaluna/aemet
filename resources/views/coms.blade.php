@@ -71,7 +71,7 @@
 		@map([
 			'lat' => $graffiti['latitud'],
 			'lng' => $graffiti['longitud'],
-			'zoom' => 6,
+			'zoom' => 13,
 			'markers' => [
 				[
 				'title' => $graffiti['titulo'],

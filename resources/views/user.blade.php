@@ -7,17 +7,18 @@
     <!-- PERFIL -->
         <div class="row perfil mt-5">
             <div class="col-3 p-5">
-                <img src="{{$usuario['foto_perfil']}}" class="rounded-circle pl-2">
+                <img src="{{ $usuario['foto_perfil'] }}" class="rounded-circle pl-2">
             </div>
             <div class="col-9 pt-5">
                 <div>
                     <h1>{{$usuario['username']}}</h1>
                 </div>
                 <div class="d-flex">
-                    <div class="pr-5"><strong>{{count($graffitis)}}</strong> graffitis descubiertos </div>
+                    <div class="pr-5"><strong>{{ $n_graffitis }}</strong> @if($n_graffitis == 1) graffiti descubierto @else graffitis descubiertos @endif</div>
                 </div>
                 <div class="pt-2">
                     {{$usuario['descripcion']}}
+					{{Auth::user()}}
                 </div>
 	        </div>
         </div>

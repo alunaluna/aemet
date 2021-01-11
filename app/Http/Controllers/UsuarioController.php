@@ -27,7 +27,8 @@ class UsuarioController extends Controller
 
         $resp = [
             'usuario' => $usuario,
-            'graffitis' => $graffitis_usuario,
+			'graffitis' => $graffitis_usuario,
+			'n_graffitis' => count($graffitis_usuario),
         ];
 
         return response()->view('user', $resp);
