@@ -3,8 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Collection;
-use Jenssegers\Mongodb\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Jenssegers\Mongodb\Auth\User as Authenticatable;
 
 
 class Usuario extends Authenticatable
