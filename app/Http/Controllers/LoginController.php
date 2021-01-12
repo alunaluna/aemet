@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Usuario;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
@@ -22,37 +23,25 @@ class LoginController extends Controller
 
     public function callback(){
 		$user = Socialite::driver('google')->stateless()->user();
-//        $email = $user->getEmail();
-		//auth()->login($user, true);
-		request()->session()->put('user', $user);
-		request()->session()->put('expiresDate', Carbon::now()->addHours(1));
-		//dd($user);
-		
-        $client = new Client([
-            'base_uri' => '',
-        ]);
 
-        $lin = sprintf(env('API_URL_HEROKU') .'api/usuarios/porEmail/%s',$user->getEmail());
-
-        $response = $client->request('GET',$lin);
-
-        $response = json_decode($response->getBody(), true);
-
-        if(sizeof($response)==0){ //si ese correo no tiene entrada en la base de datos, entonces pasamos a crear una cuenta
-            return response()->view('register');
-        }else{ //si ese correo ya está registrado, entonces palante
+		$usuario = Usuario::findByEmail($user->getEmail());
+    
+        if($usuario){ //si ese correo ya está registrado, entonces palante
+			auth()->login($usuario);
             return redirect('/');
+		}else{ //si ese correo no tiene entrada en la base de datos, entonces pasamos a crear una cuenta
+			$newUser = Usuario::create([
+									'nombre' => $user->getName(),
+									'email' => $user->getEmail(),
+									'provider_id' => $user->getId(),
+								]);
+			return response()->view('register', ['usuario' => $newUser]);
         }
     }
 
-    public function store(){
-        $client = new Client([
-            'base_uri' => '',
-        ]);
+    public function store(Request $request){
 
         $request_form = request()->all();
-
-        $request_form['email'] = request()->session()->get('user')->getEmail();
 
         $image = Imgur::setHeaders([
             'headers' => [
@@ -60,18 +49,13 @@ class LoginController extends Controller
             ]
         ])->upload(request()->image);
 
-        $request_form['foto_perfil'] = $image->link();
+		$request_form['foto_perfil'] = $image->link();
+		
+		$usuario = Usuario::find($request_form['id']);
 
-        $response = $client->post(env('API_URL_HEROKU') .'api/usuarios', ['json' => $request_form]);
+        $usuario->update($request_form);
 
-        $response = $client->request('GET',env('API_URL_HEROKU') .'api/usuarios');
-        $users = json_decode($response->getBody(), true);
-
-        $resp = [
-            'alert' => 'Graffiti creado correctamente',
-            'users' => $users,
-        ];
-
+		auth()->login($usuario);
         return redirect('/');
     }
 }

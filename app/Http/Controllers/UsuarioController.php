@@ -2,28 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use GuzzleHttp\Client;
-use Illuminate\Http\Request;
+use App\Models\Usuario;
 
 class UsuarioController extends Controller
 {
     public function index($id){
 
-        $client = new Client([
-            'base_uri' => '',
-        ]);
+        $usuario = Usuario::findOrFail($id);
 
-        $lin = sprintf(env('API_URL_HEROKU') .'api/usuarios/%s',$id);
-
-        $response = $client->request('GET',$lin); //ralentiza la carga de la página, quizas es mejor quitarlo.
-
-        $usuario = json_decode($response->getBody(), true);
-
-        $lin = sprintf(env('API_URL_HEROKU') .'api/usuarios/%s/graffitis',$id);
-
-        $response = $client->request('GET',$lin); //ralentiza la carga de la página, quizas es mejor quitarlo.
-
-        $graffitis_usuario = json_decode($response->getBody(), true);
+        $graffitis_usuario = $usuario->graffitis()->get();
 
         $resp = [
             'usuario' => $usuario,

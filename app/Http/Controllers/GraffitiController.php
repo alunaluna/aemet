@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\DatosAbiertosHelper;
+use App\Models\Graffiti;
+use App\Models\Usuario;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
@@ -10,68 +13,30 @@ use Imgur;
 class GraffitiController extends Controller
 {
     public function index(){
-
-		$client = new Client([
-			'base_uri' => '',
-		]);
-
-		$response = $client->request('GET',env('API_URL_HEROKU') .'api/graffitis');
-
-		$graffitis = json_decode($response->getBody(), true);
-
-        $mes = date("m", time());
-
-		$response = $client->request('GET',env('API_URL_HEROKU') .'api/datosAbiertos/eventos/mes/'.$mes);
-
-		$eventos = json_decode($response->getBody(), true);
-
+		$graffitis = Graffiti::orderByDesc('created_at')->get();
+		
+		$datos = new DatosAbiertosHelper();
+		$eventos = $datos->eventosDelMes(date("m", time()));
 		$eventosListaReducida = array_slice($eventos, 0, 20);  //Debería haber algún endpoint que devolviese un # acotado de eventos
+		$eventosCorregidos = $this->corregirEventos($eventosListaReducida);
 
-		$eventosCorregidos = GraffitiController::corregirEventos($eventosListaReducida);
+		//dd(auth());
 
 		return response()->view('feed', ['graffitis' => $graffitis, 'eventos' => array_slice($eventosCorregidos, 0, 20)]);
 	}
 
 	public function show($id){
-		$client = new Client([
-			'base_uri' => '',
-		]);
 
-		$lin = sprintf(env('API_URL_HEROKU') .'api/graffitis/%s/comentarios',$id);
+		$graffiti = Graffiti::findOrFail($id);
 
-		$response = $client->request('GET',$lin);
+		$comentarios = $graffiti->comentarios;
 
-		$comentarios = json_decode($response->getBody(), true);
+		$poster = $graffiti->usuario;
 
-		$lin = sprintf(env('API_URL_HEROKU') .'api/graffitis/%s',$id);
+		$datos = new DatosAbiertosHelper();
+		$eventos = $this->corregirEventos($datos->eventosDelMes(date("m", strtotime($graffiti->created_at))));
 
-		$response = $client->request('GET',$lin);
-
-		$graffiti = json_decode($response->getBody(), true);
-
-		$lin = sprintf(env('API_URL_HEROKU') .'api/usuarios/%s', $graffiti['usuario_id']);
-
-		$response = $client->request('GET',$lin);
-
-		$poster = json_decode($response->getBody(), true);
-
-		$mes = date("m", strtotime($graffiti['created_at']));
-
-		$lin = sprintf(env('API_URL_HEROKU') .'api/datosAbiertos/eventos/mes/%s',$mes);
-
-		$response = $client->request('GET',$lin); //ralentiza la carga de la página, quizas es mejor quitarlo.
-
-		$eventos = GraffitiController::corregirEventos(array_slice(json_decode($response->getBody(), true), 0, 20));
-
-		$usuarios = array();
-
-		$response = $client->request('GET',env('API_URL_HEROKU') .'api/usuarios');
-
-		$users = json_decode($response->getBody(), true);
-		
-		foreach($users as $u){
-			$usuarios[$u['_id']] = $u;
-		}
+		$usuarios = Usuario::all();
 
 		$tweet = 'Mira este graffiti de '.$graffiti['autor'].' en '.url()->current();
 
@@ -88,13 +53,8 @@ class GraffitiController extends Controller
 	}
 
 	public function new(){
-		$client = new Client([
-			'base_uri' => '',
-		]);
 
-		$response = $client->request('GET',env('API_URL_HEROKU') .'api/usuarios');
-
-		$users = json_decode($response->getBody(), true);
+		$users = Usuario::all()->get();
 
 		$resp = [
 			'users' => $users,
@@ -103,31 +63,19 @@ class GraffitiController extends Controller
 		return response()->view('new', $resp);
 	}
 
-	public function search(){
-		$client = new Client([
-			'base_uri' => '',
-		]);
+	public function search(Request $request){
 
-		$text = strval(request()->input('texto'));
+		$text = strval($request->input('texto'));
 		if(empty($text)){
-			$lin = sprintf(env('API_URL_HEROKU') .'api/graffitis');
+			$graffitis = Graffiti::all()->get();
 		} else {
-			$lin = sprintf(env('API_URL_HEROKU') .'api/graffitis/porTitulo/%s',$text);
+			$graffitis = Graffiti::searchByTitulo($text);
 		}
-		
-		$response = $client->request('GET', $lin);
 
-		$graffitis = json_decode($response->getBody(), true);
-
-		$mes = date("m", time());
-
-		$response = $client->request('GET',env('API_URL_HEROKU') .'api/datosAbiertos/eventos/mes/'.$mes);
-
-		$eventos = json_decode($response->getBody(), true);
-
+		$datos = new DatosAbiertosHelper();
+		$eventos = $datos->eventosDelMes(date("m", time()));
 		$eventosListaReducida = array_slice($eventos, 0, 20);  //Debería haber algún endpoint que devolviese un # acotado de eventos
-
-		$eventosCorregidos = GraffitiController::corregirEventos($eventosListaReducida);
+		$eventosCorregidos = $this->corregirEventos($eventosListaReducida);
 
 		$resp = [
 			'eventos' => $eventosCorregidos,
@@ -137,11 +85,8 @@ class GraffitiController extends Controller
 		return response()->view('feed', $resp);
 	}
 
-	public function store(){
-		$client = new Client([
-			'base_uri' => '',
-		]);
-		$request_form = request()->all();
+	public function store(Request $request){
+		$request_form = $request->all();
 		if(empty($request_form['autor'])){
 			$request_form['autor'] = 'Anónimo'; //si el autor está vació, lo ponemos como anónimo
 		}
@@ -154,10 +99,9 @@ class GraffitiController extends Controller
 
 		$request_form['url_foto'] = $image->link();
 
-		$response = $client->post(env('API_URL_HEROKU') .'api/graffitis', ['json' => $request_form]);
+		Graffiti::create($request_form);
 
-		$response = $client->request('GET',env('API_URL_HEROKU') .'api/usuarios');
-		$users = json_decode($response->getBody(), true);
+		$users = Usuario::all()->get();
 
 		$resp = [
 			'alert' => 'Graffiti creado correctamente',
@@ -176,17 +120,17 @@ class GraffitiController extends Controller
 		return $image->link();
 	}
 
-	private static function corregirEventos($eventos){
+	private function corregirEventos($eventos){
 		foreach ($eventos as &$ev ) {
-			$ev['NOMBRE'] = GraffitiController::eliminarHtmlTags($ev['NOMBRE']);
-			$ev['DESCRIPCION'] = GraffitiController::eliminarHtmlTags($ev['DESCRIPCION']);
+			$ev['NOMBRE'] = $this->eliminarHtmlTags($ev['NOMBRE']);
+			$ev['DESCRIPCION'] = $this->eliminarHtmlTags($ev['DESCRIPCION']);
 			$ev['DIRECCION_WEB'] = ($ev['DIRECCION_WEB']!='') ? 'http://'.$ev['DIRECCION_WEB']:'';
 		}
 		return $eventos;
 	}
 
 
-    public static function eliminarHtmlTags($cadena){
+    public function eliminarHtmlTags($cadena){
 
         while(($inicioEtiquetaHtml  = strpos($cadena, '<')) !== false ){
 

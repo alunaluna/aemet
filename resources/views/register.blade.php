@@ -6,13 +6,14 @@
     <form class="form mt-4" action="{{url('/login')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row">
+			<input type="hidden" value="{{ $usuario->id }}" name="id">
             <div class="form-group col-6">
                 <label class="label">Nombre de usuario *</label>
                 <input type="text" class="form-control" name="username" placeholder="Nombre que verán los usuarios" required>
             </div>
             <div class="form-group col-3">
                 <label class="label">Nombre</label>
-                <input type="text" class="form-control" name="nombre">
+                <input type="text" class="form-control" value="{{ $usuario->nombre }}" name="nombre">
             </div>
 
             <div class="form-group col-3">
