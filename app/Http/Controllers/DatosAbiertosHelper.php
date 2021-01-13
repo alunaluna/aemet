@@ -1,9 +1,8 @@
 <?php
- 
+
 namespace App\Http\Controllers;
 
 use DateTime;
-use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
 
 class DatosAbiertosHelper
@@ -14,22 +13,13 @@ class DatosAbiertosHelper
 	function __construct()
 	{
 		$client = new Client();
-        
-        $response = $client->request('GET', 'https://datosabiertos.malaga.eu/api/action/package_show?id=agenda-2020'); 
+
+        $response = $client->request('GET', 'https://datosabiertos.malaga.eu/api/action/package_show?id=agenda-2020');
         $json_package = json_decode($response->getBody(),true);
 		$url = $json_package['result']['resources'][0]['url'];
 		$this->eventos = $this->csvToArray($url);
 	}
 
-	/*private function eventosArray(){
-        $client = new Client();
-        
-        $response = $client->request('GET', 'https://datosabiertos.malaga.eu/api/action/package_show?id=agenda-2020'); 
-        $json_package = json_decode($response->getBody(),true);
-        $url = $json_package['result']['resources'][0]['url'];
-        return $this->csvToArray($url);
-    }*/
-    
     public function eventos(){
         return $this->eventos;
     }
@@ -43,7 +33,7 @@ class DatosAbiertosHelper
                 $eventosMes[]=$e;
             }
         }
-        return $eventosMes; 
+        return $eventosMes;
 	}
 
     public function eventosPorNombre($fragmento){
@@ -68,21 +58,21 @@ class DatosAbiertosHelper
                 $webs[]=[$e['NOMBRE'],$e['F_INICIO'],$e['DIRECCION_WEB']];
             }
         }
-        return response()->json($webs, 200);        
+        return response()->json($webs, 200);
     }
 
-    
 
-    private function csvToArray($file) { 
+
+    private function csvToArray($file) {
         $all_rows = array();
-        if (($handle = fopen($file, 'r')) !== FALSE) { 
+        if (($handle = fopen($file, 'r')) !== FALSE) {
             $header = fgetcsv($handle);
             while ($row = fgetcsv($handle)) {
                 $all_rows[] = array_combine($header, $row);
             }
-            fclose($handle); 
-        } 
+            fclose($handle);
+        }
         return $all_rows;
     }
-    
+
 }

@@ -2,25 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\DatosAbiertosHelper;
 use App\Models\Graffiti;
 use App\Models\Usuario;
-use GuzzleHttp\Client;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\Auth;
 use Imgur;
 
 class GraffitiController extends Controller
 {
     public function index(){
 		$graffitis = Graffiti::orderByDesc('created_at')->get();
-		
+
 		$datos = new DatosAbiertosHelper();
 		$eventos = $datos->eventosDelMes(date("m", time()));
 		$eventosListaReducida = array_slice($eventos, 0, 20);  //Debería haber algún endpoint que devolviese un # acotado de eventos
 		$eventosCorregidos = $this->corregirEventos($eventosListaReducida);
-
-		//dd(auth());
 
 		return response()->view('feed', ['graffitis' => $graffitis, 'eventos' => array_slice($eventosCorregidos, 0, 20)]);
 	}
@@ -52,16 +48,6 @@ class GraffitiController extends Controller
 		return response()->view('coms', $resp);
 	}
 
-	public function new(){
-
-		$users = Usuario::all()->get();
-
-		$resp = [
-			'users' => $users,
-		];
-
-		return response()->view('new', $resp);
-	}
 
 	public function search(Request $request){
 
@@ -86,7 +72,11 @@ class GraffitiController extends Controller
 	}
 
 	public function store(Request $request){
+
 		$request_form = $request->all();
+
+		$request_form['usuario_id'] = Auth::user()->id;
+
 		if(empty($request_form['autor'])){
 			$request_form['autor'] = 'Anónimo'; //si el autor está vació, lo ponemos como anónimo
 		}
@@ -101,11 +91,8 @@ class GraffitiController extends Controller
 
 		Graffiti::create($request_form);
 
-		$users = Usuario::all()->get();
-
 		$resp = [
 			'alert' => 'Graffiti creado correctamente',
-			'users' => $users,
 		];
 
 		return response()->view('new', $resp);

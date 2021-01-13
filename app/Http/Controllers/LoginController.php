@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Usuario;
-use Carbon\Carbon;
-use GuzzleHttp\Client;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Imgur;
-use function PHPUnit\Framework\isEmpty;
+
 
 class LoginController extends Controller
 {
@@ -25,7 +22,7 @@ class LoginController extends Controller
 		$user = Socialite::driver('google')->stateless()->user();
 
 		$usuario = Usuario::findByEmail($user->getEmail());
-    
+
         if($usuario){ //si ese correo ya está registrado, entonces palante
 			auth()->login($usuario);
             return redirect('/');
@@ -50,7 +47,7 @@ class LoginController extends Controller
         ])->upload(request()->image);
 
 		$request_form['foto_perfil'] = $image->link();
-		
+
 		$usuario = Usuario::find($request_form['id']);
 
         $usuario->update($request_form);
