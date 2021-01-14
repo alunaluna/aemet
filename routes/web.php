@@ -33,6 +33,7 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/login/redirect', [LoginController::class, 'redirect']);
 Route::get('/login/callback', [LoginController::class, 'callback']);
 Route::post('/login', [LoginController::class, 'store']);
+Route::get('/logout', [LoginController::class, 'logout']);
 Route::get('profile', [LoginController::class, 'profile'])->middleware('auth');
 
 Route::post('/uploadImage', [GraffitiController::class,'subirImageImgur']);

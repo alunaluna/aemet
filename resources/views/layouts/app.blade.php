@@ -42,7 +42,7 @@
             <li class="drop-down" id="perfil"><a href="{{ url('/profile') }}"><img src="{{auth()->user()->foto_perfil}}"/></a>
                 <ul>
                     <li><a href="{{ url('/profile') }}">Mi perfil</a></li>
-                    <li><a href="#" id="cerrar-sesion">Cerrar sesión</a></li>
+                    <li><a href="{{ url('/logout') }}" id="cerrar-sesion">Cerrar sesión</a></li>
                 </ul>
             </li>
 			@else

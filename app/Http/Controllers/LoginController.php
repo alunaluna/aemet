@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Imgur;
 
@@ -12,7 +13,12 @@ class LoginController extends Controller
 {
     public function index(){
         return response()->view('login');
-    }
+	}
+	
+	public function logout(Request $request) {
+		Auth::logout();
+		return redirect('/');
+	  }
 
     public function redirect(){
         return Socialite::driver('google')->redirect();
