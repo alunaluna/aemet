@@ -54,5 +54,17 @@ class LoginController extends Controller
 
 		auth()->login($usuario);
         return redirect('/');
+	}
+	
+	public function profile(){
+
+        $graffitis_usuario = auth()->user()->graffitis;
+
+        $resp = [
+			'graffitis' => $graffitis_usuario,
+			'n_graffitis' => count($graffitis_usuario),
+        ];
+
+        return response()->view('profile', $resp);
     }
 }

@@ -10,7 +10,7 @@ class UsuarioController extends Controller
 
         $usuario = Usuario::findOrFail($id);
 
-        $graffitis_usuario = $usuario->graffitis()->get();
+        $graffitis_usuario = $usuario->graffitis;
 
         $resp = [
             'usuario' => $usuario,

@@ -1,26 +1,25 @@
 @extends('layouts.app')
 
-@section('title', 'Pagina personal de '. $usuario->username )
+@section('title', 'Pagina personal de '.auth()->user()->username)
 
 @section('content')
 
     <!-- PERFIL -->
         <div class="row perfil mt-5">
             <div class="col-3 p-5">
-                <img src="{{ $usuario->foto_perfil }}" class="rounded-circle pl-2">
+                <img src="{{ auth()->user()->foto_perfil }}" class="rounded-circle pl-2">
             </div>
             <div class="col-9 pt-5">
                 <div>
-                    <h1>{{ $usuario->username }}</h1>
-                    @if(auth()->user() && auth()->user()->id != $usuario->id)
-                        <a href="#" class="btn btn-guay">Seguir</a>
-                    @endif
+                    <h1>{{ auth()->user()->username }}</h1>
+					<a href="{{ url('/user/'.auth()->user()->id ) }}" class="btn btn-guay">Ver perfil público</a>
+                    <a href="#" class="btn btn-guay">Editar perfil</a>
                 </div>
                 <div class="d-flex">
-                    <div class="pt-2 pr-5"><strong>{{ $n_graffitis }}</strong> @if($n_graffitis == 1) graffiti descubierto @else graffitis descubiertos @endif</div>
+                    <div class="pt-2 pr-5">Has descubierto <strong>{{ $n_graffitis }}</strong> @if($n_graffitis == 1) graffiti @else graffitis @endif</div>
                 </div>
                 <div class="pt-2">
-                    {{ $usuario->descripcion }}
+                    {{ auth()->user()->descripcion }}
 					{{ request()->session()->get('expiresDate') }}
                 </div>
 	        </div>
@@ -32,8 +31,8 @@
     </div>
 
     <!-- POST USUARIO -->
-	@if($n_graffitis > 0) 
-    <h1 style="color:white"> Graffitis de {{ $usuario->username }}</h1>
+    <h1 style="color:white">Tus graffitis descubiertos</h1>
+	@if($n_graffitis == 0) <p>No tienes graffitis. <a href="/new">Publica un post</a> para añadir un graffiti.</p> @endif
     <div class="relative flex justify-center pt-4">
         <div class="card-columns">
             @foreach($graffitis as $g)
@@ -50,7 +49,6 @@
             @endforeach
         </div>
     </div>
-	@endif
     <!-- FIN POST USUARIO -->
 
 @endsection
