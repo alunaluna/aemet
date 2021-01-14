@@ -9,7 +9,11 @@
 		<!-- Mitad de la foto -->
 		<div class="col-6">
 			<div class="card border-0">
-				<div class="card-header">Post de <a href="{{url('/user/'.$poster->_id)}}">{{$poster->username}}</a></div>
+				<div class="card-header">Post de <a href="{{url('/user/'.$poster->_id)}}">{{$poster->username}}</a>
+                    @if(auth()->user()->provider_id != $poster->provider_id)
+                    <a href="#" class="btn btn-guay"><i class="fas fa-heart"></i> Me Gusta</a>
+                    @endif
+                </div>
 				<img src="{{ $graffiti->url_foto }}" class="card-img-top">
 				<div class="card-body">
 					<h5 class="card-title">{{ $graffiti->titulo}}</h5>
@@ -100,5 +104,5 @@
 		@endforeach
 	</div>
 	<!-- FIN CARROUSEL EVENTOS -->
-	
+
 @endsection

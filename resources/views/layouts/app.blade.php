@@ -34,17 +34,22 @@
     @section('navbar')
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top">
-    
+
         <div class="container d-flex align-items-center">
             <h1 class="logo mr-auto text-light"><a href="{{url('/')}}">Web Graffitis<span></span></a></h1>
 			@if(auth()->user())
             <a href="{{url('/new')}}" class="btn btn-guay scrollto">Nuevo Post</a>
-            <a href="{{url('/user/'.auth()->user()->id)}}" class="user-link">{{ auth()->user()->username }}</a>
+            <li class="drop-down" id="perfil"><a href="{{url('/user/'.auth()->user()->id)}}"><img src="{{auth()->user()->foto_perfil}}"/></a>
+                <ul>
+                    <li><a href="{{url('/user/'.auth()->user()->id)}}">Mi perfil</a></li>
+                    <li><a href="#" id="cerrar-sesion">Cerrar sesión</a></li>
+                </ul>
+            </li>
 			@else
 			<a href="{{url('/login')}}" class="btn btn-guay scrollto">Iniciar sesión</a>
 			@endif
         </div>
-	
+
     </header><!-- .nav-menu -->
     @show
 

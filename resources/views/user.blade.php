@@ -12,9 +12,14 @@
             <div class="col-9 pt-5">
                 <div>
                     <h1>{{$usuario['username']}}</h1>
+                    @if(auth()->user()->provider_id == $usuario['provider_id'])
+                        <a href="#" class="btn btn-guay">Editar perfil</a>
+                    @else
+                        <a href="#" class="btn btn-guay">Seguir</a>
+                    @endif
                 </div>
                 <div class="d-flex">
-                    <div class="pr-5"><strong>{{ $n_graffitis }}</strong> @if($n_graffitis == 1) graffiti descubierto @else graffitis descubiertos @endif</div>
+                    <div class="pt-2 pr-5"><strong>{{ $n_graffitis }}</strong> @if($n_graffitis == 1) graffiti descubierto @else graffitis descubiertos @endif</div>
                 </div>
                 <div class="pt-2">
                     {{$usuario['descripcion']}}
@@ -47,5 +52,5 @@
         </div>
     </div>
     <!-- FIN POST USUARIO -->
-	
+
 @endsection
