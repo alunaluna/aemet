@@ -10,7 +10,7 @@
 		<div class="col-6">
 			<div class="card border-0">
 				<div class="card-header">Post de <a href="{{url('/user/'.$poster->_id)}}">{{$poster->username}}</a>
-                    @if(auth()->user()->provider_id != $poster->provider_id)
+                    @if(auth()->user() && auth()->user()->id != $poster->id)
                     <a href="#" class="btn btn-guay"><i class="fas fa-heart"></i> Me Gusta</a>
                     @endif
                 </div>

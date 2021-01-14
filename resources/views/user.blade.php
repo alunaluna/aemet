@@ -39,11 +39,11 @@
         <div class="card-columns">
             @foreach($graffitis as $g)
 				<div class="card card-flotante">
-					<a href="{{ url('/comsa/'.$g['_id']) }}">
+					<a href="{{ url('/graffiti/'.$g['_id']) }}">
 						<img src="{{ $g['url_foto'] }}" class="card-img-top">
 					</a>
 					<div class="card-body post_feed">
-						<h5 class="card-title"><a href=" {{url('/comsa/'.$g['_id']) }}">{{ $g['titulo']}}</a></h5>
+						<h5 class="card-title"><a href=" {{url('/graffiti/'.$g['_id']) }}">{{ $g['titulo']}}</a></h5>
 						<h6 class="card-subtitle mb-2 font-weight-bold">{{$g['autor']}}</h6>
 						<p class="card-text">{{ $g['descripcion']}}</p>
 					</div>

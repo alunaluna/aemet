@@ -45,7 +45,7 @@ class GraffitiController extends Controller
 			'tweet' => $tweet
 		];
 
-		return response()->view('coms', $resp);
+		return response()->view('graffiti', $resp);
 	}
 
 
@@ -53,7 +53,7 @@ class GraffitiController extends Controller
 
 		$text = strval($request->input('texto'));
 		if(empty($text)){
-			$graffitis = Graffiti::all()->get();
+			$graffitis = Graffiti::all();
 		} else {
 			$graffitis = Graffiti::searchByTitulo($text);
 		}
