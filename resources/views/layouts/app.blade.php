@@ -55,6 +55,17 @@
 
 
     <div class="container pt-5 mt-5">
+		@if(session('alert'))
+			<!-- ALERT -->
+			<div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
+				{{ session('alert') }}
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<!-- /ALERT -->
+		@endif
+		
         @yield('content')
 
     </div>

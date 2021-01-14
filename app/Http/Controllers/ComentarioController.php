@@ -10,7 +10,7 @@ class ComentarioController extends Controller
 {
     public function store(Request $request){
 		$request->request->add(['usuario_id' => auth()->user()->id]); //add usuario_id
-        $comentario = Comentario::create($request->all());
+        Comentario::create($request->all());
         return redirect()->back();
     }
 }

@@ -27,8 +27,6 @@ class GraffitiController extends Controller
 
 		$comentarios = $graffiti->comentarios;
 
-		$poster = $graffiti->usuario;
-
 		$datos = new DatosAbiertosHelper();
 		$eventos = $this->corregirEventos($datos->eventosDelMes(date("m", strtotime($graffiti->created_at))));
 
@@ -41,7 +39,6 @@ class GraffitiController extends Controller
 			'graffiti' => $graffiti,
 			'comentarios' => $comentarios,
 			'usuarios' => $usuarios,
-			'poster' => $poster,
 			'tweet' => $tweet
 		];
 
@@ -73,30 +70,34 @@ class GraffitiController extends Controller
 
 	public function store(Request $request){
 
-		$request_form = $request->all();
+		$request->request->add(['usuario_id' => Auth::user()->id]); //add usuario_id
 
-		$request_form['usuario_id'] = Auth::user()->id;
-
-		if(empty($request_form['autor'])){
-			$request_form['autor'] = 'Anónimo'; //si el autor está vació, lo ponemos como anónimo
+		if(empty($request->autor)){ //si el autor está vacío, lo ponemos como anónimo
+			$request->request->add(['autor' => 'Anónimo']); 
 		}
 
 		$image = Imgur::setHeaders([
-			'headers' => [
-				'authorization' => 'Client-ID ' . env('IMGUR_CLIENT_ID'),
-			]
-		])->upload(request()->image);
+									'headers' => ['authorization' => 'Client-ID ' . env('IMGUR_CLIENT_ID'),
+									]
+								])->upload($request->image);
 
-		$request_form['url_foto'] = $image->link();
+		$request->request->add(['url_foto' => $image->link()]); //add url_foto
 
-		Graffiti::create($request_form);
+		$graffiti = Graffiti::create($request->all());
 
-		$resp = [
-			'alert' => 'Graffiti creado correctamente',
-		];
-
-		return response()->view('new', $resp);
+		return redirect('graffiti/' . $graffiti->id )->with('alert', 'Post creado correctamente');
 	}
+
+	public function destroy($id)
+    {
+		$graffiti = Graffiti::findOrFail($id);
+		if(Auth::user()->id == $graffiti->usuario_id){
+			$graffiti->delete();
+		} else {
+			return back()->with('alert', 'Error al eliminar el post.');
+		}
+        return redirect('/')->with(['alert' => 'Post eliminado correctamente.']);
+    }
 
 	public function subirImagenImgur($url) {
 		$image = Imgur::setHeaders([
@@ -107,6 +108,8 @@ class GraffitiController extends Controller
 		return $image->link();
 	}
 
+	//Funciones auxiliares
+
 	private function corregirEventos($eventos){
 		foreach ($eventos as &$ev ) {
 			$ev['NOMBRE'] = $this->eliminarHtmlTags($ev['NOMBRE']);
@@ -116,8 +119,7 @@ class GraffitiController extends Controller
 		return $eventos;
 	}
 
-
-    public function eliminarHtmlTags($cadena){
+    private function eliminarHtmlTags($cadena){
 
         while(($inicioEtiquetaHtml  = strpos($cadena, '<')) !== false ){
 

@@ -9,8 +9,8 @@
 		<!-- Mitad de la foto -->
 		<div class="col-6">
 			<div class="card border-0">
-				<div class="card-header">Post de <a href="{{url('/user/'.$poster->_id)}}">{{$poster->username}}</a>
-                    @if(auth()->user() && auth()->user()->id != $poster->id)
+				<div class="card-header">Post de <a href="{{url('/user/'.$graffiti->usuario->id)}}">{{$graffiti->usuario->username}}</a>
+                    @if(auth()->user() && auth()->user()->id != $graffiti->usuario->id)
                     <a href="#" class="btn btn-guay"><i class="fas fa-heart"></i> Me Gusta</a>
                     @endif
                 </div>
@@ -19,10 +19,14 @@
 					<h5 class="card-title">{{ $graffiti->titulo}}</h5>
 					<h6 class="card-subtitle mb-2 text-muted">{{$graffiti->autor}}</h6>
 					<p class="card-text">{{ $graffiti->descripcion}}</p>
+					@if(auth()->user() && auth()->user()->id == $graffiti->usuario_id)
+                    	<a href="{{ url('graffiti/'. $graffiti->id .'/delete')}}" class="btn btn-danger"><i class="fas fa-times"></i> Eliminar post</a>
+                	@endif
 				</div>
 				<div class="d-flex flex-row-reverse">
 					<a href="https://twitter.com/intent/tweet?text={{$tweet}}" class="btn fab fa-twitter fa-2x mb-2 p-2 text-decoration-none rounded-circle" target="_blank"></a>
 				</div>
+				
 			</div>
 		</div>
 

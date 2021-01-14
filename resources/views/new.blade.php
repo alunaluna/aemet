@@ -4,17 +4,6 @@
 
 @section('content')
 
-		@if(isset($alert))
-		<!-- ALERT -->
-		<div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
-			{{$alert}}
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-		<!-- /ALERT -->
-		@endif
-
 		<!-- FORMULIARIO -->
 		<form class="form mt-4" action="{{url('/new')}}" method="post" enctype="multipart/form-data">
 			@csrf
