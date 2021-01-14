@@ -19,10 +19,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [GraffitiController::class,'index']);//->middleware('auth');
+Route::get('/', [GraffitiController::class,'index']);
 Route::get('/graffiti/{id}', [GraffitiController::class,'show']);
 Route::get('/graffiti/{id}/delete', [GraffitiController::class,'destroy']);
-Route::get('/new', function () {return response()->view('new');});
+Route::get('/new', function () {
+	return response()->view('new');
+});
 Route::post('/new', [GraffitiController::class,'store']);
 Route::post('/buscar', [GraffitiController::class,'search']);
 

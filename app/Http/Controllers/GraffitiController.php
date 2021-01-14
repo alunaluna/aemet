@@ -88,8 +88,7 @@ class GraffitiController extends Controller
 		return redirect('graffiti/' . $graffiti->id )->with('alert', 'Post creado correctamente');
 	}
 
-	public function destroy($id)
-    {
+	public function destroy($id){
 		$graffiti = Graffiti::findOrFail($id);
 		if(Auth::user()->id == $graffiti->usuario_id){
 			$graffiti->delete();
