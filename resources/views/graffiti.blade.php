@@ -10,19 +10,20 @@
 		<div class="col-6">
 			<div class="card border-0">
 				<div class="card-header">Post de <a href="{{url('/user/'.$graffiti->usuario->id)}}">{{$graffiti->usuario->username}}</a>
-                    @if(auth()->user() && auth()->user()->id != $graffiti->usuario->id)
+                    @if(auth()->user() && auth()->user()->id != $graffiti->usuario->id && !$like)
                         <a href="{{url('/like/'.$graffiti->id)}}" class="btn btn-guay"><i class="fas fa-heart"></i> Me Gusta</a>
-                    @elseif(auth()->user() && $like)
-                        <a href="{{url('/dislike/'.$like->id)}}" class="btn btn-guay"><i class="fas fa-heart-broken"></i> Ya no me gusta</a>
                     @elseif(auth()->user() && auth()->user()->id == $graffiti->usuario->id)
                         <a href="#" class="btn btn-guay">Editar post</a>
+                    @elseif(auth()->user() && $like)
+                        <a href="{{url('/dislike/'.$like->id)}}" class="btn btn-guay"><i class="fas fa-heart-broken"></i> Ya no me gusta</a>
+
                     @endif
                 </div>
 				<img src="{{ $graffiti->url_foto }}" class="card-img-top">
 				<div class="card-body">
 					<h5 class="card-title">{{ $graffiti->titulo}}</h5>
 					<h6 class="card-subtitle mb-2 text-muted">{{$graffiti->autor}}</h6>
-					<p class="card-text">{{ $graffiti->descripcion}}</p>
+					<p class="card-text">{{ $graffiti->descripcion}}. <span class="font-weight-bold">{{count($graffiti->likes()->get())}}</span> me gusta.</p>
 					@if(auth()->user() && auth()->user()->id == $graffiti->usuario_id)
                     	<a href="{{ url('graffiti/'. $graffiti->id .'/delete')}}" class="btn btn-danger"><i class="fas fa-times"></i> Eliminar post</a>
                 	@endif

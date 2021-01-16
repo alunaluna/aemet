@@ -16,7 +16,7 @@ class GraffitiController extends Controller
 
 		$datos = new DatosAbiertosHelper();
 		$eventos = $datos->eventosDelMes(date("m", time()));
-		$eventosListaReducida = array_slice($eventos, 0, 20);  //Debería haber algún endpoint que devolviese un # acotado de eventos
+		$eventosListaReducida = array_slice($eventos, count($eventos)-20, count($eventos));  //Debería haber algún endpoint que devolviese un # acotado de eventos
 		$eventosCorregidos = $this->corregirEventos($eventosListaReducida);
 
 		return response()->view('feed', ['graffitis' => $graffitis, 'eventos' => array_slice($eventosCorregidos, 0, 20)]);
