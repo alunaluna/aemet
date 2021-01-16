@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 class LikeController extends Controller
 {
     public function store($graffiti_id){
-        dd('hola');
         $usuario_id = auth()->user()->id;
         if(!Like::busqueda($usuario_id, $graffiti_id)){
             Like::create([
