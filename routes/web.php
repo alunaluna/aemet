@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\GraffitiController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Middleware\AuthSession;
@@ -37,6 +38,9 @@ Route::get('/login/redirect', [LoginController::class, 'redirect']);
 Route::get('/login/callback', [LoginController::class, 'callback']);
 Route::post('/login', [LoginController::class, 'store']);
 Route::get('/logout', [LoginController::class, 'logout']);
-Route::get('profile', [LoginController::class, 'profile'])->middleware('auth');
+Route::get('/profile', [LoginController::class, 'profile'])->middleware('auth');
 
 Route::post('/uploadImage', [GraffitiController::class,'subirImageImgur']);
+
+Route::get('/like/{id}', [LikeController::class,'store'])->middleware('auth');
+Route::get('/dislike/{id}', [LikeController::class,'delete'])->middleware('auth');

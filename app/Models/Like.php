@@ -8,7 +8,7 @@ use Jenssegers\Mongodb\Eloquent\Model;
 class Like extends Model
 {
 	use HasFactory;
-	
+
 	protected $fillable = [
 		'usuario_id',
 		'graffiti_id',
@@ -18,7 +18,7 @@ class Like extends Model
 	protected $attributes = [
         'isLike' => true,
     ];
-	
+
 	//Relaciones
     public function usuario(){
     	return $this->belongsTo('App\Models\Usuario');
@@ -27,7 +27,7 @@ class Like extends Model
 	public function graffiti(){
         return $this->belongsTo('App\Models\Graffiti');
 	}
-	
+
 	//Funciones auxiliares
 	public static function busqueda($usuario_id, $graffiti_id){
 		return Like::where('usuario_id', 'like', $usuario_id)

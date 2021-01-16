@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Graffiti;
+use App\Models\Like;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,6 +24,12 @@ class GraffitiController extends Controller
 
 	public function show($id){
 
+        $like = null;
+
+        if(auth()->user()){
+            $like = Like::busqueda(auth()->user()->id, $id);
+        }
+
 		$graffiti = Graffiti::findOrFail($id);
 
 		$comentarios = $graffiti->comentarios;
@@ -39,7 +46,8 @@ class GraffitiController extends Controller
 			'graffiti' => $graffiti,
 			'comentarios' => $comentarios,
 			'usuarios' => $usuarios,
-			'tweet' => $tweet
+			'tweet' => $tweet,
+            'like' => $like
 		];
 
 		return response()->view('graffiti', $resp);
@@ -73,7 +81,7 @@ class GraffitiController extends Controller
 		$request->request->add(['usuario_id' => Auth::user()->id]); //add usuario_id
 
 		if(empty($request->autor)){ //si el autor está vacío, lo ponemos como anónimo
-			$request->request->add(['autor' => 'Anónimo']); 
+			$request->request->add(['autor' => 'Anónimo']);
 		}
 
 		$image = Imgur::setHeaders([

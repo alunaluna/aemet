@@ -11,7 +11,11 @@
 			<div class="card border-0">
 				<div class="card-header">Post de <a href="{{url('/user/'.$graffiti->usuario->id)}}">{{$graffiti->usuario->username}}</a>
                     @if(auth()->user() && auth()->user()->id != $graffiti->usuario->id)
-                    <a href="#" class="btn btn-guay"><i class="fas fa-heart"></i> Me Gusta</a>
+                        <a href="{{url('/like/'.$graffiti->id)}}" class="btn btn-guay"><i class="fas fa-heart"></i> Me Gusta</a>
+                    @elseif(auth()->user() && $like)
+                        <a href="{{url('/dislike/'.$like->id)}}" class="btn btn-guay"><i class="fas fa-heart-broken"></i> Ya no me gusta</a>
+                    @elseif(auth()->user() && auth()->user()->id == $graffiti->usuario->id)
+                        <a href="#" class="btn btn-guay">Editar post</a>
                     @endif
                 </div>
 				<img src="{{ $graffiti->url_foto }}" class="card-img-top">
@@ -26,7 +30,7 @@
 				<div class="d-flex flex-row-reverse">
 					<a href="https://twitter.com/intent/tweet?text={{$tweet}}" class="btn fab fa-twitter fa-2x mb-2 p-2 text-decoration-none rounded-circle" target="_blank"></a>
 				</div>
-				
+
 			</div>
 		</div>
 

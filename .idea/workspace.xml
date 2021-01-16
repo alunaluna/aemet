@@ -19,18 +19,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="161a96a6-b1ae-461c-82eb-e9a0176adb6e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/A4clienteREST.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/A4clienteREST.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+    <list default="true" id="722ab20e-3ae1-4a62-8b8b-7803c0368a74" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GraffitiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/GraffitiController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Like.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Like.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/graffiti.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/graffiti.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/user.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.php" beforeDir="false" afterPath="$PROJECT_DIR$/server.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,8 +34,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
-    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+  <component name="ComposerSettings">
     <execution />
   </component>
   <component name="Git.Settings">
@@ -161,64 +156,8 @@
       <path value="$PROJECT_DIR$/vendor/jenssegers/mongodb" />
     </include_path>
   </component>
-  <component name="ProjectId" id="1kusjrBtq5NX6iUGtmRbjJVih9C" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Proyectos php\A4clienteREST2\resources\views" />
-      <recent name="D:\xampp\htdocs\A4clienteREST\public\js" />
-      <recent name="D:\xampp\htdocs\A4clienteREST\resources\views" />
-      <recent name="D:\xampp\htdocs\A4clienteREST\resources\images" />
-      <recent name="D:\xampp\htdocs\A4clienteREST\public\owlcarousel" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Proyectos php\A4clienteREST2\resources\views" />
-      <recent name="D:\Proyectos php\A4clienteREST2\resources\views\layouts" />
-      <recent name="D:\xampp\htdocs\A4clienteREST\public\css" />
-      <recent name="D:\xampp\htdocs\A4clienteREST\resources\views" />
-    </key>
-  </component>
-  <component name="RunManager">
-    <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <TestRunner scope="XML" />
-      <method v="2" />
-    </configuration>
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="161a96a6-b1ae-461c-82eb-e9a0176adb6e" name="Default Changelist" comment="" />
-      <created>1606561950010</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1606561950010</updated>
-      <workItem from="1606561951738" duration="20991000" />
-      <workItem from="1606651805367" duration="3792000" />
-      <workItem from="1606665209255" duration="1205000" />
-      <workItem from="1606756465083" duration="6381000" />
-      <workItem from="1607072958142" duration="6988000" />
-      <workItem from="1607097107843" duration="5128000" />
-      <workItem from="1607103687078" duration="57000" />
-      <workItem from="1607195909358" duration="272000" />
-      <workItem from="1609693024179" duration="276000" />
-      <workItem from="1609693479987" duration="4714000" />
-      <workItem from="1609699142336" duration="2368000" />
-      <workItem from="1610476043332" duration="3266000" />
-      <workItem from="1610610247864" duration="4850000" />
-    </task>
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -233,21 +172,9 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1609696521139">
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1610819127930">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609696521139" />
-    <state x="715" y="242" key="NewPhpClassDialog" timestamp="1609699785080">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="715" y="242" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609699785080" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1609693490654">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609693490654" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1607100972448">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607100972448" />
+    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610819127930" />
   </component>
 </project>
