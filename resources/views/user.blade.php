@@ -19,7 +19,7 @@
                     @endif
                 </div>
                 <div class="d-flex">
-                    <div class="pt-2 pr-5"><strong>{{ $n_graffitis }}</strong> @if($n_graffitis == 1) graffiti descubierto @else graffitis descubiertos @endif</div>
+                    <div class="pt-2 pr-5"><strong>{{ count($usuario->seguidores()->get()) }}</strong> seguidores <strong> {{ $n_graffitis }}</strong> @if($n_graffitis == 1) graffiti descubierto @else graffitis descubiertos @endif</div>
                 </div>
                 <div class="pt-2">
                     {{ $usuario->descripcion }}
@@ -34,7 +34,7 @@
     </div>
 
     <!-- POST USUARIO -->
-	@if($n_graffitis > 0) 
+	@if($n_graffitis > 0)
     <h1 style="color:white"> Graffitis de {{ $usuario->username }}</h1>
     <div class="relative flex justify-center pt-4">
         <div class="card-columns">
