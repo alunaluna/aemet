@@ -21,5 +21,11 @@ class Follower extends Model
 
 	public function seguidor(){
         return $this->belongsTo('App\Models\Usuario', 'follower');
-    }
+	}
+	
+	public static function busqueda($usuario_id, $follower_id){
+		return Follower::where('usuario_id', 'like', $usuario_id)
+					->where('follower', 'like', $follower_id)
+					->first();
+	}
 }

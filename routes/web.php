@@ -5,6 +5,7 @@ use App\Http\Controllers\GraffitiController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\FollowerController;
 use App\Http\Middleware\AuthSession;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -44,3 +45,6 @@ Route::post('/uploadImage', [GraffitiController::class,'subirImageImgur']);
 
 Route::get('/like/{id}', [LikeController::class,'store'])->middleware('auth');
 Route::get('/dislike/{id}', [LikeController::class,'delete'])->middleware('auth');
+
+Route::get('/follow/{id}', [FollowerController::class,'store'])->middleware('auth');
+Route::get('/unfollow/{id}', [FollowerController::class,'delete'])->middleware('auth');

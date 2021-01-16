@@ -12,8 +12,10 @@
             <div class="col-9 pt-5">
                 <div>
                     <h1>{{ $usuario->username }}</h1>
-                    @if(auth()->user() && auth()->user()->id != $usuario->id)
-                        <a href="#" class="btn btn-guay">Seguir</a>
+                    @if(auth()->user() && auth()->user()->id != $usuario->id && !$follow)
+                        <a href="{{url('/follow/'.$usuario->id)}}" class="btn btn-guay">Seguir</a>
+                    @elseif(auth()->user() && $follow)
+                        <a href="{{url('/unfollow/'.$follow->id)}}" class="btn btn-guay">Dejar de seguir</a>
                     @endif
                 </div>
                 <div class="d-flex">
