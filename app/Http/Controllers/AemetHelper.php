@@ -63,13 +63,14 @@ class AemetHelper
         //$output = curl_exec($ch2);
 
         $tiempo = json_decode(curl_exec($ch2),true);
-        dd($tiempo);
+
 
         // free
         curl_close($ch2);
 
         //dd($output);
 
+        dd($tiempo);
 
 	}
 
