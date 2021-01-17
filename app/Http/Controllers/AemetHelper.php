@@ -62,7 +62,7 @@ class AemetHelper
         // execute
         //$output = curl_exec($ch2);
 
-        $tiempo = json_decode(curl_exec($ch2),true);
+        $tiempo = curl_exec($ch2);
 
 
         // free
