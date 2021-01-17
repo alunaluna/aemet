@@ -14,7 +14,7 @@ class GraffitiController extends Controller
     public function index(){
 		$graffitis = Graffiti::orderByDesc('created_at')->get();
 
-		$datos = new DatosAbiertosHelper();
+		$datos = new AemetHelper();
 		$eventos = $datos->eventosDelMes(date("m", time()));
 		$eventosListaReducida = array_slice($eventos, count($eventos)-20, count($eventos));  //Debería haber algún endpoint que devolviese un # acotado de eventos
 		$eventosCorregidos = $this->corregirEventos($eventosListaReducida);
