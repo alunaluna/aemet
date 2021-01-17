@@ -4,28 +4,33 @@ namespace App\Http\Controllers;
 
 
 
+use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
 
 class AemetHelper
 {
 
-	private $tiempo;
+	//private $tiempo;
 
 	function __construct()
 	{
+        $client = new Client();
 
-        $response = Http::withHeaders([ //Meter la api key de aemet en el .ENV
-            'api_key' => 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJncmFmZml0ZXJvbWFzQGdtYWlsLmNvbSIsImp0aSI6ImVkMThiMDM1LTdmYTgtNGQxYy1hNmY2LWQ4NDQ1Y2ZmZDM4ZCIsImlzcyI6IkFFTUVUIiwiaWF0IjoxNjA4NTcxNjE1LCJ1c2VySWQiOiJlZDE4YjAzNS03ZmE4LTRkMWMtYTZmNi1kODQ0NWNmZmQzOGQiLCJyb2xlIjoiIn0.US6H11IPALR5cqM5SsAK4Yc3XqblEv4t5RvkAFpRhA4'
-        ])->get('https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/diaria/29067');
+	    $response = $client->request('GET', 'https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/diaria/29067',
+        [ 'api_key' => 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJncmFmZml0ZXJvbWFzQGdtYWlsLmNvbSIsImp0aSI6ImVkMThiMDM1LTdmYTgtNGQxYy1hNmY2LWQ4NDQ1Y2ZmZDM4ZCIsImlzcyI6IkFFTUVUIiwiaWF0IjoxNjA4NTcxNjE1LCJ1c2VySWQiOiJlZDE4YjAzNS03ZmE4LTRkMWMtYTZmNi1kODQ0NWNmZmQzOGQiLCJyb2xlIjoiIn0.US6H11IPALR5cqM5SsAK4Yc3XqblEv4t5RvkAFpRhA4']);
+        //$response = Http::withHeaders([ //Meter la api key de aemet en el .ENV
+//            'api_key' => 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJncmFmZml0ZXJvbWFzQGdtYWlsLmNvbSIsImp0aSI6ImVkMThiMDM1LTdmYTgtNGQxYy1hNmY2LWQ4NDQ1Y2ZmZDM4ZCIsImlzcyI6IkFFTUVUIiwiaWF0IjoxNjA4NTcxNjE1LCJ1c2VySWQiOiJlZDE4YjAzNS03ZmE4LTRkMWMtYTZmNi1kODQ0NWNmZmQzOGQiLCJyb2xlIjoiIn0.US6H11IPALR5cqM5SsAK4Yc3XqblEv4t5RvkAFpRhA4'
+  //      ])->get('https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/diaria/29067');
 
         $url_tiempo = json_decode($response->getBody(),true)['datos'];
 
-        $response_tiempo = Http::get($url_tiempo);
+        $response_tiempo = $client->request('GET', $url_tiempo);
+
+        //$response_tiempo = Http::get($url_tiempo);
 
         $tiempo = json_decode($response_tiempo->getBody(),true);
 
         dd($tiempo);
-
 	}
 
     public function eventos(){
