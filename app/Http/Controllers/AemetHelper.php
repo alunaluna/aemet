@@ -45,6 +45,22 @@ class AemetHelper
         // free
         curl_close($ch);
 
+
+        $ch = curl_init();
+        $headers = array(
+            'api_key: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJncmFmZml0ZXJvbWFzQGdtYWlsLmNvbSIsImp0aSI6ImVkMThiMDM1LTdmYTgtNGQxYy1hNmY2LWQ4NDQ1Y2ZmZDM4ZCIsImlzcyI6IkFFTUVUIiwiaWF0IjoxNjA4NTcxNjE1LCJ1c2VySWQiOiJlZDE4YjAzNS03ZmE4LTRkMWMtYTZmNi1kODQ0NWNmZmQzOGQiLCJyb2xlIjoiIn0.US6H11IPALR5cqM5SsAK4Yc3XqblEv4t5RvkAFpRhA4'
+        );
+        curl_setopt($ch, CURLOPT_URL, 'https://opendata.aemet.es/opendata/sh/6be0a230');
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_SSL_CIPHER_LIST, 'DEFAULT@SECLEVEL=1');
+
+        // execute
+        $output = curl_exec($ch);
+
+        // free
+        curl_close($ch);
+
         dd($output);
 
 
