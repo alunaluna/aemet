@@ -12,14 +12,21 @@ use Imgur;
 class GraffitiController extends Controller
 {
     public function index(){
+
 		$graffitis = Graffiti::orderByDesc('created_at')->get();
 
-		$datos = new AemetHelper();
-		$eventos = $datos->eventosDelMes(date("m", time()));
+        $datosAbiertos = new DatosAbiertosHelper();
+		$eventos = $datosAbiertos->eventosDelMes(date("m", time()));
 		$eventosListaReducida = array_slice($eventos, count($eventos)-20, count($eventos));  //Debería haber algún endpoint que devolviese un # acotado de eventos
 		$eventosCorregidos = $this->corregirEventos($eventosListaReducida);
 
-		return response()->view('feed', ['graffitis' => $graffitis, 'eventos' => array_slice($eventosCorregidos, 0, 20)]);
+        $datosTiempo = new AemetHelper();
+        $tiempoHoy = $datosTiempo->tiempoHoy();
+        $prediccionesProxSemana = $datosTiempo->prediccionesProximaSemana();
+
+
+		return response()->view('feed', ['graffitis' => $graffitis, 'eventos' => array_slice($eventosCorregidos, 0, 20),
+            'tiempoHoy' => $tiempoHoy   , 'prediccionesProxSemana' => $prediccionesProxSemana]);
 	}
 
 	public function show($id){

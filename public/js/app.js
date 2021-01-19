@@ -23536,8 +23536,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Proyectos php\A4clienteREST2\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Proyectos php\A4clienteREST2\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\Users\Alvilux\PhpstormProjects\A4clienteREST2\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Alvilux\PhpstormProjects\A4clienteREST2\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })
